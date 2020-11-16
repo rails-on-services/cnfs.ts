@@ -1,3 +1,24 @@
+$primary: (
+  Main: #f77594,
+  Light: #ffa7c4,
+  Dark: #c14466,
+  contrast: (
+    Main: #f5f5f5,
+    Light: #000,
+    Dark: #fff,
+  ),
+);
+
+$accent: (
+  Main: #ff9100,
+  Light: #ffc246,
+  Dark: #c56200,
+  contrast: (
+    Main: #f5f5f5,
+    Light: #000,
+    Dark: #fff,
+  ),
+);
 
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -12,21 +33,23 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$dashboard-primary: mat-palette($mat-indigo);
-$dashboard-accent: mat-palette($mat-pink, A200, A100, A400);
+$dashboard-primary: mat-palette($primary, Main, Light, Dark);
+$dashboard-accent: mat-palette($accent, Main, Light, Dark);
 
 // The warn palette is optional (defaults to red).
 $dashboard-warn: mat-palette($mat-red);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$dashboard-theme: mat-light-theme((
-  color: (
-    primary: $dashboard-primary,
-    accent: $dashboard-accent,
-    warn: $dashboard-warn,
+$dashboard-theme: mat-light-theme(
+  (
+    color: (
+      primary: $dashboard-primary,
+      accent: $dashboard-accent,
+      warn: $dashboard-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,5 +58,11 @@ $dashboard-theme: mat-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
