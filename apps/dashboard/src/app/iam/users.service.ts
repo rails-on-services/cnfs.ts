@@ -1,15 +1,12 @@
+import { HttpParamsOptions, ITableData, ITableService } from '@cnfs/angular-table';
+import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { Observable, of } from 'rxjs';
-import { ITableData } from '../table-data/data-list.interface';
-import { HttpParamsOptions } from '../table-data/params-map';
-import { ITableService } from '../table-data/table-service-interface';
-import { IUser } from './user.model';
 import { sample } from './sample';
 import { UserDto } from './user.dto';
-import { IJSonApiResourceObjects } from '@cnfs/json-api';
+import { IUser } from './user.model';
 
 export class UsersService implements ITableService<IUser> {
   getTableData(params: HttpParamsOptions): Observable<ITableData<IUser>> {
-    console.log(params);
     let users: IJSonApiResourceObjects<UserDto>[] = Array.isArray(sample.data)
       ? sample.data
       : [];

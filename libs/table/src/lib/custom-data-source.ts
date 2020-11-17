@@ -151,7 +151,6 @@ export class CustomDataSource<T> extends DataSource<T> {
   }
 
   public registerSort(sort: MatSort): void {
-    console.log('register sort');
     if (!sort) {
       throw new Error('sort is undefined');
     }

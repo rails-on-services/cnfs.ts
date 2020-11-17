@@ -15,13 +15,14 @@ import { UsersComponent } from './users/users.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'prefix',
     component: IamComponent,
     children: [
-      { path: 'users', component: UsersComponent },
-      { path: '**', redirectTo: 'users' },
+      { path: 'users', component: UsersComponent, pathMatch:'prefix' },
+      { path: '', pathMatch: 'full',  redirectTo: 'users' },
     ],
   },
-  { path: '**', redirectTo: '' },
+  // { path: '*', redirectTo: '' },
 ];
 @NgModule({
   declarations: [IamComponent, UsersComponent],

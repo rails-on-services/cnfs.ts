@@ -16,6 +16,11 @@ const routes: Routes = [
     path: 'iam',
     loadChildren: () => import('./iam/iam.module').then((m) => m.IamModule),
   },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'iam'
+  }
 ];
 
 @NgModule({

@@ -1,9 +1,9 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
-import { CustomDataSource } from '../../table-data/custom-data-source';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatSort } from '@angular/material/sort';
+import { CustomDataSource } from '@cnfs/angular-table';
 import { IUser } from '../user.model';
 import { UsersService } from '../users.service';
-import { MatSort } from '@angular/material/sort';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'cnfs-users',

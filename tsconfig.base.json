@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@cnfs/json-api": ["libs/json-api/src/index.ts"]
+      "@cnfs/json-api": ["libs/json-api/src/index.ts"],
+      "@cnfs/angular-table": ["libs/table/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
