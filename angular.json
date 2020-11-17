@@ -25,9 +25,7 @@
               "apps/dashboard/src/favicon.ico",
               "apps/dashboard/src/assets"
             ],
-            "styles": [
-              "apps/dashboard/src/styles.scss"
-            ],
+            "styles": ["apps/dashboard/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -81,9 +79,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/dashboard/src/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/dashboard/src/**/*.ts"]
           }
         },
         "test": {
@@ -96,7 +92,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref":"/cnfs.ts/"
+            "baseHref": "/cnfs.ts/"
           }
         }
       }
@@ -122,9 +118,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/dashboard-e2e/**/*.{js,ts}"
-            ]
+            "lintFilePatterns": ["apps/dashboard-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -138,9 +132,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/json-api/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/json-api/**/*.ts"]
           }
         },
         "test": {
@@ -173,9 +165,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/table/src/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/table/src/**/*.ts"]
           }
         },
         "test": {
@@ -213,9 +203,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/iam/src/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/iam/src/**/*.ts"]
           }
         },
         "test": {

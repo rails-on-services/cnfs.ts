@@ -8,8 +8,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
+
 import { IamComponent } from './iam.component';
-import { UsersService } from './users.service';
+import { MockUsersService } from './mock.users.service';
+import { UsersAdapter } from './users.adapter';
+import { IUsersService } from './users.service';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
@@ -18,8 +21,8 @@ const routes: Routes = [
     pathMatch: 'prefix',
     component: IamComponent,
     children: [
-      { path: 'users', component: UsersComponent, pathMatch:'prefix' },
-      { path: '', pathMatch: 'full',  redirectTo: 'users' },
+      { path: 'users', component: UsersComponent, pathMatch: 'prefix' },
+      { path: '', pathMatch: 'full', redirectTo: 'users' },
     ],
   },
   // { path: '*', redirectTo: '' },
@@ -37,6 +40,9 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
   ],
-  providers: [UsersService],
+  providers: [
+    { provide: IUsersService, useClass: MockUsersService },
+    UsersAdapter,
+  ],
 })
 export class IamModule {}

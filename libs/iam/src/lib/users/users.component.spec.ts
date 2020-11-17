@@ -7,13 +7,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { UsersService } from '../users.service';
+import { UsersAdapter } from '../users.adapter';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
-
+  const usersAdapterMock: Partial<UsersAdapter> = {};
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UsersComponent],
@@ -25,9 +25,9 @@ describe('UsersComponent', () => {
         MatTableModule,
         MatInputModule,
         MatSortModule,
-        NoopAnimationsModule
+        NoopAnimationsModule,
       ],
-      providers: [UsersService]
+      providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
     }).compileComponents();
   });
 
