@@ -7,13 +7,20 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
 import { UsersAdapter } from '../users.adapter';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
-  const usersAdapterMock: Partial<UsersAdapter> = {};
+  const usersAdapterMock: Partial<UsersAdapter> = {
+    getTableData: () =>
+      of({
+        data: [],
+        meta: {},
+      }),
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UsersComponent],
