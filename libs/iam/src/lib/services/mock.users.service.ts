@@ -85,9 +85,9 @@ export class MockUsersService implements IUsersService {
   }
 
   getOne(id: string): Observable<IJsonApiSingleResourcePayload<UserDto>> {
-    const user: IJSonApiResourceObjects<UserDto> = sample.data
+    const user: IJSonApiResourceObjects<UserDto> | null = sample.data
       .filter((user: IJSonApiResourceObjects<UserDto>) => user.id === id)
-      .pop();
+      .pop() || null;
     return of({
       ...sample,
       data: user,
