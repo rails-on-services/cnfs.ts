@@ -4,10 +4,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersService } from '../users.service';
 import { UsersComponent } from './users.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -23,6 +24,7 @@ describe('UsersComponent', () => {
         MatFormFieldModule,
         MatTableModule,
         MatInputModule,
+        MatSortModule,
         NoopAnimationsModule
       ],
       providers: [UsersService]
