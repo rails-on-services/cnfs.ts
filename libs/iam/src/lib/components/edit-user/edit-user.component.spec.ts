@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { UsersAdapter } from '../../services/users.adapter';
 import { EditUserComponent } from './edit-user.component';
@@ -13,7 +15,13 @@ describe('EditUserComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [EditUserComponent],
-      imports: [ReactiveFormsModule, MatFormFieldModule, RouterTestingModule],
+      imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+      ],
       providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
     }).compileComponents();
   });
