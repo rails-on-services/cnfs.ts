@@ -9,6 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { UsersAdapter } from '../../services/users.adapter';
 import { UsersComponent } from './users.component';
@@ -34,6 +35,7 @@ describe('UsersComponent', () => {
         MatTableModule,
         MatInputModule,
         MatSortModule,
+        RouterTestingModule,
         NoopAnimationsModule,
       ],
       providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
