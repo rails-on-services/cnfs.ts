@@ -8,13 +8,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { IamModule } from './iam/iam.module';
-import {MatSortModule} from '@angular/material/sort';
 
 const routes: Routes = [
   {
     path: 'iam',
-    loadChildren: () => import('./iam/iam.module').then((m) => m.IamModule),
+    loadChildren: () => import('@cnfs/iam').then((m) => m.IamModule),
   },
   {
     path: '',
@@ -32,9 +30,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    IamModule,
     MatListModule,
-    MatSortModule,
     RouterModule.forRoot(routes),
   ],
   providers: [],

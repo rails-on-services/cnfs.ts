@@ -7,6 +7,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { UsersService } from '../users.service';
 import { UsersComponent } from './users.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -22,6 +23,7 @@ describe('UsersComponent', () => {
         MatFormFieldModule,
         MatTableModule,
         MatInputModule,
+        NoopAnimationsModule
       ],
       providers: [UsersService]
     }).compileComponents();

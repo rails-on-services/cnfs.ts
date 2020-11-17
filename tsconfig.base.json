@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@cnfs/json-api": ["libs/json-api/src/index.ts"],
-      "@cnfs/angular-table": ["libs/table/src/index.ts"]
+      "@cnfs/angular-table": ["libs/table/src/index.ts"],
+      "@cnfs/iam": ["libs/iam/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
