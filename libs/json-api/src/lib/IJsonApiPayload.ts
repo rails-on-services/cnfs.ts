@@ -1,29 +1,34 @@
 import { IJsonApiError } from './IJsonApiError';
 import { IJsonApiLinks } from './IJsonApiLink';
 import { IJsonApiMeta } from './IJsonApiMeta';
+import { IJSonApiRelationships } from './IJSonApiRelationships';
 
-export interface IJsonApiTopLevelPayload<T> {
+export interface IJsonApiTopLevelPayload<T, I = void, M = IJsonApiMeta> {
   data: T;
   errors: IJsonApiError[];
-  meta: IJsonApiMeta;
-  jsonapi?: any;
+  meta: M;
+  jsonapi?: unknown;
   links?: IJsonApiLinks;
-  included: any[];
+  included: I[];
 }
 
 export type IJsonApiSingleResourcePayload<
-  T
-> = IJsonApiTopLevelPayload<IJSonApiResourceObjects<T> | null>;
+  T,
+  I = void,
+  M = IJsonApiMeta
+> = IJsonApiTopLevelPayload<IJSonApiResourceObjects<T> | null, I, M>;
 
-export type IJsonApiResourceCollectionPayload<T> = IJsonApiTopLevelPayload<
-  IJSonApiResourceObjects<T>[] | []
->;
+export type IJsonApiResourceCollectionPayload<
+  T,
+  I = void,
+  M = IJsonApiMeta
+> = IJsonApiTopLevelPayload<IJSonApiResourceObjects<T>[] | [], I, M>;
 
 export interface IJSonApiResourceObjects<T> {
   id: string;
   type: string;
   attributes?: T;
-  relationships?: any;
+  relationships?: IJSonApiRelationships;
   links?: IJsonApiLinks;
   meta?: IJsonApiMeta;
 }

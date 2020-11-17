@@ -1,4 +1,3 @@
-
 import { IMeta } from './imeta';
 
 export interface ITableData<T> {

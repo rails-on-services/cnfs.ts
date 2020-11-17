@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
@@ -17,8 +18,8 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'iam'
-  }
+    redirectTo: 'iam',
+  },
 ];
 
 @NgModule({

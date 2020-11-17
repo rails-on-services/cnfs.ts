@@ -2,8 +2,9 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { CustomDataSource } from '@cnfs/angular-table';
-import { IUser } from '../user.model';
-import { UsersService } from '../users.service';
+
+import { IUser } from '../../models/user.model';
+import { UsersAdapter } from '../../services/users.adapter';
 
 @Component({
   selector: 'cnfs-users',
@@ -12,13 +13,13 @@ import { UsersService } from '../users.service';
 })
 export class UsersComponent implements AfterViewInit {
   dataSource: CustomDataSource<IUser>;
-  displayedColumns: string[] = ['firstName', 'createdAt'];
+  displayedColumns: string[] = ['firstName', 'createdAt', 'actions'];
   @ViewChild(MatSort) sort: MatSort;
   control: FormControl = new FormControl();
   placeholder = 'search';
 
-  constructor(usersService: UsersService) {
-    this.dataSource = new CustomDataSource(usersService);
+  constructor(usersAdapter: UsersAdapter) {
+    this.dataSource = new CustomDataSource(usersAdapter);
     this.control.valueChanges.subscribe(
       (value) => (this.dataSource.filter = { firstName: value })
     );
@@ -27,4 +28,6 @@ export class UsersComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.registerSort(this.sort);
   }
+
+  onDelete(user: IUser): void {}
 }
