@@ -35,6 +35,12 @@
     },
     "json-api": {
       "tags": []
+    },
+    "table": {
+      "tags": []
+    },
+    "iam": {
+      "tags": []
     }
   }
 }

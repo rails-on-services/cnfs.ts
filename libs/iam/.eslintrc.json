@@ -1,0 +1,7 @@
+{
+  "extends": "../../.eslintrc.json",
+  "ignorePatterns": ["!**/*"],
+  "rules": {
+    "@nrwl/nx/enforce-module-boundaries": "off"
+  }
+}
