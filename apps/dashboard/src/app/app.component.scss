@@ -1,5 +1,5 @@
-@import '~@angular/material/theming';
-@import '../styles.scss';
+@use '~@angular/material/theming' as material;
+@use '../colors.scss' as colors;
 
 :host {
   height: 100%;
@@ -15,7 +15,7 @@
 
 .sidenav {
   background-color: white;
-  @include mat-elevation(2);
+  @include material.mat-elevation(2);
   overflow-y: scroll;
 }
 
@@ -26,5 +26,5 @@
 
 .list-item-active {
   font-weight: bold;
-  color: map-get($accent, Darker) !important;
+  color: map-get(colors.$accent, Darker) !important;
 }
