@@ -1,4 +1,5 @@
 import { IJsonApiResourceCollectionPayload } from '@cnfs/json-api';
+
 import { UserDto } from './user.dto';
 
 export const sample: IJsonApiResourceCollectionPayload<UserDto> = {

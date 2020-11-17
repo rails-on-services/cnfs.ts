@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  links: { label: string, route: string }[] = [{ label: 'IAM', route: 'iam' }];
+  links: { label: string; route: string }[] = [{ label: 'IAM', route: 'iam' }];
 }

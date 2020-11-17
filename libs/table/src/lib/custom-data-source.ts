@@ -1,7 +1,8 @@
-import { DataSource } from '@angular/cdk/collections';
-import { MatSort, Sort } from '@angular/material/sort';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, map, takeUntil } from 'rxjs/operators';
+
+import { DataSource } from '@angular/cdk/collections';
+import { MatSort, Sort } from '@angular/material/sort';
 
 import { ITableData } from './data-list.interface';
 import { IPagination } from './ipagination';
@@ -129,7 +130,7 @@ export class CustomDataSource<T> extends DataSource<T> {
 
   public disconnect(): void {
     this.request.unsubscribe();
-    this.destroy$.next(null);
+    this.destroy$.next();
     this.destroy$.complete();
     this.dataSubject.complete();
     this.changeFilterSearch.complete();
@@ -176,10 +177,10 @@ export class CustomDataSource<T> extends DataSource<T> {
       this.request = this.dataService.getTableData(params).subscribe(
         (res: ITableData<T>) => {
           this.dataSubject.next(res.data);
-          this.lengthData.next(res.meta.record_count);
+          this.lengthData.next(res.meta?.record_count || 0);
           this.loadingSubject.next(false);
           const status =
-            res.data.length > 0 && res.meta.record_count > 0
+            res.data.length > 0 && (res.meta?.record_count || 0) > 0
               ? DataSourceStates.hasDataApi
               : DataSourceStates.noDataApi;
           this.setState(status);
