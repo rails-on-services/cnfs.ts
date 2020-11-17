@@ -2,8 +2,8 @@
   <button mat-icon-button aria-label="Toggle sidenav" (click)="drawer.toggle()">
     <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
     <mat-icon *ngIf="drawer.opened">west</mat-icon>
-    <span>Dashboard</span>
   </button>
+  <span>Dashboard</span>
 </mat-toolbar>
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" opened>
