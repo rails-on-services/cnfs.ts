@@ -11,6 +11,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { IamComponent } from './iam.component';
 import { UsersService } from './users.service';
 import { UsersComponent } from './users/users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
   // { path: '*', redirectTo: '' },
 ];
 @NgModule({
-  declarations: [IamComponent, UsersComponent],
+  declarations: [IamComponent, UsersComponent, EditUserComponent],
   imports: [
     CommonModule,
     MatTableModule,
