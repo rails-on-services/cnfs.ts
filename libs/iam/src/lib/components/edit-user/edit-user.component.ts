@@ -1,10 +1,12 @@
+import { filter, map, switchMap, tap } from 'rxjs/operators';
+
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
-import { UsersAdapter } from '../../services/users.adapter';
+
 import { IUser } from '../../models/user.model';
+import { UsersAdapter } from '../../services/users.adapter';
 
 @Component({
   selector: 'cnfs-edit-user',

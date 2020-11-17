@@ -10,7 +10,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { UsersAdapter } from '../users.adapter';
+import { UsersAdapter } from '../../services/users.adapter';
 import { UsersComponent } from './users.component';
 
 describe('UsersComponent', () => {

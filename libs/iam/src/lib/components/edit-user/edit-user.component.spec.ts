@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { EditUserComponent } from './edit-user.component';
 
@@ -8,9 +10,9 @@ describe('EditUserComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditUserComponent ]
-    })
-    .compileComponents();
+      declarations: [EditUserComponent],
+      imports: [ReactiveFormsModule, MatFormFieldModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
