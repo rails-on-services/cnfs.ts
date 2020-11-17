@@ -1,12 +1,19 @@
 import { Observable } from 'rxjs';
 
 import { HttpParamsOptions } from '@cnfs/angular-table';
-import { IJsonApiResourceCollectionPayload } from '@cnfs/json-api';
+import {
+  IJsonApiResourceCollectionPayload,
+  IJsonApiSingleResourcePayload,
+} from '@cnfs/json-api';
 
-import { UserDto } from './user.dto';
+import { UserDto } from '../models/user.dto';
 
 export abstract class IUsersService {
   abstract getList(
     params: HttpParamsOptions
   ): Observable<IJsonApiResourceCollectionPayload<UserDto>>;
+
+  abstract getOne(
+    id: string
+  ): Observable<IJsonApiSingleResourcePayload<UserDto>>;
 }

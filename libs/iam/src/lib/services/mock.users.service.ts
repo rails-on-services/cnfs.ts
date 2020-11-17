@@ -4,10 +4,11 @@ import { HttpParamsOptions } from '@cnfs/angular-table';
 import {
   IJsonApiResourceCollectionPayload,
   IJSonApiResourceObjects,
+  IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
 
+import { UserDto } from '../models/user.dto';
 import { sample } from './sample';
-import { UserDto } from './user.dto';
 import { IUsersService } from './users.service';
 
 export class MockUsersService implements IUsersService {
@@ -82,6 +83,17 @@ export class MockUsersService implements IUsersService {
     return of({
       ...sample,
       data: users,
+    });
+  }
+
+  getOne(id: string): Observable<IJsonApiSingleResourcePayload<UserDto>> {
+    const user: IJSonApiResourceObjects<UserDto> | null =
+      sample.data
+        .filter((user: IJSonApiResourceObjects<UserDto>) => user.id === id)
+        .pop() || null;
+    return of({
+      ...sample,
+      data: user,
     });
   }
 }

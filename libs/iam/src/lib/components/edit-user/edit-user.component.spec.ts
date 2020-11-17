@@ -1,39 +1,25 @@
-import { of } from 'rxjs';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UsersAdapter } from '../../services/users.adapter';
+import { EditUserComponent } from './edit-user.component';
 
-import { UsersAdapter } from '../users.adapter';
-import { UsersComponent } from './users.component';
+describe('EditUserComponent', () => {
+  let component: EditUserComponent;
+  let fixture: ComponentFixture<EditUserComponent>;
+  const usersAdapterMock: Partial<UsersAdapter> = {};
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
-  const usersAdapterMock: Partial<UsersAdapter> = {
-    getTableData: () =>
-      of({
-        data: [],
-        meta: {},
-      }),
-  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsersComponent],
+      declarations: [EditUserComponent],
       imports: [
-        MatIconModule,
         ReactiveFormsModule,
-        MatPaginatorModule,
         MatFormFieldModule,
-        MatTableModule,
         MatInputModule,
-        MatSortModule,
+        RouterTestingModule,
         NoopAnimationsModule,
       ],
       providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
@@ -41,7 +27,7 @@ describe('UsersComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(EditUserComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

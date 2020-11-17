@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -9,11 +10,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
 
-import { IamComponent } from './iam.component';
-import { MockUsersService } from './mock.users.service';
-import { UsersAdapter } from './users.adapter';
-import { IUsersService } from './users.service';
-import { UsersComponent } from './users/users.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { UsersComponent } from './components/users/users.component';
+import { IamComponent } from './pages/iam.component';
+import { MockUsersService } from './services/mock.users.service';
+import { UsersAdapter } from './services/users.adapter';
+import { IUsersService } from './services/users.service';
 
 const routes: Routes = [
   {
@@ -22,13 +24,18 @@ const routes: Routes = [
     component: IamComponent,
     children: [
       { path: 'users', component: UsersComponent, pathMatch: 'prefix' },
+      {
+        path: 'edit/:userId',
+        component: EditUserComponent,
+        pathMatch: 'prefix',
+      },
       { path: '', pathMatch: 'full', redirectTo: 'users' },
     ],
   },
   // { path: '*', redirectTo: '' },
 ];
 @NgModule({
-  declarations: [IamComponent, UsersComponent],
+  declarations: [IamComponent, UsersComponent, EditUserComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -38,6 +45,7 @@ const routes: Routes = [
     MatInputModule,
     MatIconModule,
     ReactiveFormsModule,
+    MatButtonModule,
     RouterModule.forChild(routes),
   ],
   providers: [
