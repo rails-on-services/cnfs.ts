@@ -1,5 +1,10 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { UsersAdapter } from '../../services/users.adapter';
+import { IUser } from '../../models/user.model';
 
 @Component({
   selector: 'cnfs-edit-user',
@@ -8,11 +13,42 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class EditUserComponent {
   form: FormGroup = this.fb.group({
-    firstName: [],
+    firstName: ['', [Validators.required, Validators.minLength(1)]],
   });
-  constructor(private fb: FormBuilder) {}
+  user: IUser | null = null;
 
-  onSave(): void {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private location: Location,
+    private activatedRoute: ActivatedRoute,
+    private service: UsersAdapter
+  ) {
+    this.activatedRoute.paramMap
+      .pipe(
+        filter((ps: ParamMap) => ps.has('userId')),
+        map((ps: ParamMap) => ps.get('userId')),
+        switchMap((id: string) => this.service.getOne(id)),
+        tap((user: IUser | null) => {
+          if (user) {
+            this.form.setValue({ firstName: user.firstName });
+          }
+        })
+      )
+      .subscribe((user: IUser) => (this.user = user));
+  }
 
-  onCancel(): void {}
+  onSave(): void {
+    if (!this.form.valid) {
+      return;
+    }
+  }
+
+  onCancel(): void {
+    try {
+      this.location.back();
+    } catch {
+      this.router.navigate(['..', '..', 'users']);
+    }
+  }
 }

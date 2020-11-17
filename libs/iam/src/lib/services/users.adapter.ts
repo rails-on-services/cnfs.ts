@@ -2,8 +2,15 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
-import { HttpParamsOptions, ITableData, ITableService } from '@cnfs/angular-table';
-import { IJSonApiResourceObjects } from '@cnfs/json-api';
+import {
+  HttpParamsOptions,
+  ITableData,
+  ITableService,
+} from '@cnfs/angular-table';
+import {
+  IJSonApiResourceObjects,
+  IJsonApiSingleResourcePayload,
+} from '@cnfs/json-api';
 
 import { UserDto } from '../models/user.dto';
 import { IUser } from '../models/user.model';
@@ -27,6 +34,16 @@ export class UsersAdapter implements ITableService<IUser> {
         return { data, meta: res.meta };
       })
     );
+  }
+
+  getOne(id: string): Observable<IUser | null> {
+    return this.service
+      .getOne(id)
+      .pipe(
+        map((res: IJsonApiSingleResourcePayload<UserDto>) =>
+          res.data === null ? null : this.fromDto(res.data)
+        )
+      );
   }
 
   private fromDto(dto: IJSonApiResourceObjects<UserDto>): IUser {
