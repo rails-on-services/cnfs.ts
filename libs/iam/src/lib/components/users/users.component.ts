@@ -29,5 +29,7 @@ export class UsersComponent implements AfterViewInit {
     this.dataSource.registerSort(this.sort);
   }
 
-  onDelete(user: IUser): void {}
+  onDelete(user: IUser): void {
+    //todo implement
+  }
 }
