@@ -188,18 +188,6 @@
       "sourceRoot": "libs/iam/src",
       "prefix": "cnfs",
       "architect": {
-        // "build": {
-        //   "builder": "@nrwl/angular:package",
-        //   "options": {
-        //     "tsConfig": "libs/iam/tsconfig.lib.json",
-        //     "project": "libs/iam/ng-package.json"
-        //   },
-        //   "configurations": {
-        //     "production": {
-        //       "tsConfig": "libs/iam/tsconfig.lib.prod.json"
-        //     }
-        //   }
-        // },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
@@ -210,6 +198,44 @@
           "builder": "@nrwl/jest:jest",
           "options": {
             "jestConfig": "libs/iam/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      }
+    },
+    "common": {
+      "projectType": "library",
+      "root": "libs/common",
+      "sourceRoot": "libs/common/src",
+      "prefix": "cnfs",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/common/tsconfig.lib.json",
+            "project": "libs/common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/common/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/common/src/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/common/jest.config.js",
             "passWithNoTests": true
           }
         }

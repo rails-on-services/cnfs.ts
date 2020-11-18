@@ -1,14 +1,17 @@
 <h2>Users</h2>
-<mat-form-field appearance="outline" class="search-filter control-input">
-  <mat-icon matPrefix color="md-dark">search</mat-icon>
-  <input
-    matInput
-    type="text"
-    [formControl]="control"
-    [placeholder]="placeholder"
-    [attr.aria-label]="placeholder"
-  />
-</mat-form-field>
+<form [formGroup]="filter">
+  <mat-form-field appearance="outline" class="search-filter control-input">
+    <mat-icon matPrefix color="md-dark">search</mat-icon>
+    <input
+      matInput
+      type="text"
+      formControlName="firstName"
+      placeholder="Search"
+      aria-label="Search"
+      autocomplete="given-name"
+    />
+  </mat-form-field>
+</form>
 <table mat-table [dataSource]="dataSource" matSort>
   <ng-container matColumnDef="firstName" sticky>
     <th mat-header-cell *matHeaderCellDef mat-sort-header="firstName">

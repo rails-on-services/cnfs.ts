@@ -25,7 +25,7 @@ export class MockUsersService implements IUsersService {
         }
         return user.attributes.firstName
           .toLowerCase()
-          .includes(`${params['filter[firstName]']}`);
+          .includes(`${params['filter[firstName]']}`.toLowerCase());
       });
     }
     if (params['sort'] === 'firstName') {

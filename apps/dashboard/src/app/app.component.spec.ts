@@ -6,10 +6,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
-
+import { NotificationService } from '@cnfs/common';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+  const notificationServiceMock: Partial<NotificationService> = {};
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -21,6 +22,9 @@ describe('AppComponent', () => {
         NoopAnimationsModule,
         MatListModule,
         RouterTestingModule,
+      ],
+      providers: [
+        { provide: NotificationService, useValue: notificationServiceMock },
       ],
     }).compileComponents();
   });

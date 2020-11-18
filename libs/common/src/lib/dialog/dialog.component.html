@@ -1,0 +1,18 @@
+<h1 mat-dialog-title *ngIf="data.title">{{ data.title }}</h1>
+<div mat-dialog-content *ngIf="data.text">
+  {{ data.text }}
+</div>
+<div mat-dialog-actions *ngIf="data.noText || data.okText">
+  <button
+    mat-flat-button
+    (click)="onYesClick()"
+    cdkFocusInitial
+    *ngIf="data.okText"
+    color="accent"
+  >
+    {{ data.okText }}
+  </button>
+  <button mat-button (click)="onNoClick()" *ngIf="data.noText">
+    {{ data.noText }}
+  </button>
+</div>
