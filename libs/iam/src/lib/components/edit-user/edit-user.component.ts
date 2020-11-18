@@ -1,10 +1,9 @@
-import { filter, map, switchMap, tap } from 'rxjs/operators';
-
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-
+import { NotificationService } from '@cnfs/common';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { IUser } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
@@ -24,7 +23,8 @@ export class EditUserComponent {
     private router: Router,
     private location: Location,
     private activatedRoute: ActivatedRoute,
-    private service: UsersAdapter
+    private service: UsersAdapter,
+    private notificationService: NotificationService
   ) {
     this.activatedRoute.paramMap
       .pipe(
@@ -44,6 +44,20 @@ export class EditUserComponent {
     if (!this.form.valid) {
       return;
     }
+
+    const obs = this.user
+      ? this.service.update(this.user.id, {
+          firstName: this.form.value.firstName,
+        })
+      : this.service.create({ firstName: this.form.value.firstName });
+    obs.subscribe(
+      () => {
+        this.notificationService.addSnack(`Item saved`);
+        this.onCancel();
+      },
+      (err) => this.notificationService.addSnack(`Failed to save user ${err}`),
+      () => console.log('finally')
+    );
   }
 
   onCancel(): void {

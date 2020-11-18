@@ -1,5 +1,8 @@
-export interface IUser {
+export interface IUser extends IUserAttributes {
   id: string;
-  firstName: string;
   createdAt: Date;
+}
+
+export interface IUserAttributes {
+  firstName: string;
 }

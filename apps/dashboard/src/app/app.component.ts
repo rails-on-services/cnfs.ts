@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { DialogComponent, NotificationService, PopupData } from '@cnfs/common';
 
 @Component({
   selector: 'cnfs-root',
@@ -7,4 +10,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   links: { label: string; route: string }[] = [{ label: 'IAM', route: 'iam' }];
+
+  constructor(
+    private notificationService: NotificationService,
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog
+  ) {
+    this.notificationService.$snack.subscribe((msg: string) =>
+      this.snackBar.open(msg, 'x', { duration: 2000 })
+    );
+    this.notificationService.$popup.subscribe((data: PopupData) =>
+      this.dialog.open(DialogComponent, { data })
+    );
+  }
 }

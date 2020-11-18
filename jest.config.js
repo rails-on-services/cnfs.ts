@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/json-api',
     '<rootDir>/libs/table',
     '<rootDir>/libs/iam',
+    '<rootDir>/libs/common',
   ],
 };

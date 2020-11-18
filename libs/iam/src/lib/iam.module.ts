@@ -9,7 +9,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
-
+import { CnfsCommonModule } from '@cnfs/common';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UsersComponent } from './components/users/users.component';
 import { IamComponent } from './pages/iam.component';
@@ -46,6 +46,7 @@ const routes: Routes = [
     MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
+    CnfsCommonModule,
     RouterModule.forChild(routes),
   ],
   providers: [

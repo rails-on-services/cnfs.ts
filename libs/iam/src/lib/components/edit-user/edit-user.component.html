@@ -6,6 +6,7 @@
       [minLength]="1"
       formControlName="firstName"
       placeholder="First Name"
+      autocomplete="given-name"
     />
   </mat-form-field>
   <div class="buttons">
@@ -17,6 +18,6 @@
     >
       Save
     </button>
-    <button (click)="onCancel()" mat-button>Cancel</button>
+    <button (click)="onCancel()" mat-button type="button">Cancel</button>
   </div>
 </form>

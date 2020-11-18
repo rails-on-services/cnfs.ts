@@ -103,7 +103,7 @@ export class CustomDataSource<T> extends DataSource<T> {
     this.updateData(DataSourceUpdateSchema.firstPage);
   }
 
-  public set filter(value: { [key: string]: string } | string) {
+  private set filter(value: { [key: string]: string } | string) {
     if (typeof value === 'string') {
       this.privateFilter = JSON.parse(value);
     } else {
@@ -111,6 +111,10 @@ export class CustomDataSource<T> extends DataSource<T> {
     }
     this.changeFilterSearch.next(0);
     this.updateData(DataSourceUpdateSchema.firstPage);
+  }
+
+  public set $filter(filter: Observable<{ [key: string]: string }>) {
+    filter.subscribe((item) => (this.filter = item));
   }
 
   public set pagination(value: IPagination) {

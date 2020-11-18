@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
@@ -13,7 +13,7 @@ import {
 } from '@cnfs/json-api';
 
 import { UserDto } from '../models/user.dto';
-import { IUser } from '../models/user.model';
+import { IUser, IUserAttributes } from '../models/user.model';
 import { IUsersService } from './users.service';
 
 @Injectable()
@@ -44,6 +44,18 @@ export class UsersAdapter implements ITableService<IUser> {
           res.data === null ? null : this.fromDto(res.data)
         )
       );
+  }
+
+  create(user: IUserAttributes): Observable<IUser> {
+    return throwError('not implemented yet');
+  }
+
+  update(id: string, user: Partial<IUserAttributes>): Observable<IUser> {
+    return throwError('not implemented');
+  }
+
+  delete(id: string): Observable<void> {
+    return throwError('not implemented');
   }
 
   private fromDto(dto: IJSonApiResourceObjects<UserDto>): IUser {
