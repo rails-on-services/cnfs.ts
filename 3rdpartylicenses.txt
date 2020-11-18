@@ -68,6 +68,8 @@ MIT
 
 @cnfs/angular-table
 
+@cnfs/common
+
 @cnfs/iam
 
 cnfs
