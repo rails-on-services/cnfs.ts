@@ -41,7 +41,7 @@ describe('UsersComponent', () => {
       ],
       providers: [
         { provide: UsersAdapter, useValue: usersAdapterMock },
-        { provide: notificationServiceMock, useValue: notificationServiceMock },
+        { provide: NotificationService, useValue: notificationServiceMock },
       ],
     }).compileComponents();
   });

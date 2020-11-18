@@ -9,10 +9,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationService } from '@cnfs/common';
+import { Subject } from 'rxjs';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  const notificationServiceMock: Partial<NotificationService> = {};
+  const notificationServiceMock: Partial<NotificationService> = {
+    $snack: new Subject(),
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AppComponent],
