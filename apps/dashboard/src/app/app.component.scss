@@ -17,6 +17,10 @@
   background-color: white;
   @include material.mat-elevation(2);
   overflow-y: scroll;
+
+  h1 {
+    padding: 1.6rem;
+  }
 }
 
 .content {
@@ -26,5 +30,8 @@
 
 .list-item-active {
   font-weight: bold;
-  color: map-get(colors.$accent, Darker) !important;
+
+  // .mat-list-item-content {
+  //   color: map-get(colors.$accent, Darker) !important;
+  // }
 }
