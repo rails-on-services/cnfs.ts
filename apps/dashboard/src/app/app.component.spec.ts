@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 describe('AppComponent', () => {
   const notificationServiceMock: Partial<NotificationService> = {
     $snack: new Subject(),
+    $popup: new Subject()
   };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
