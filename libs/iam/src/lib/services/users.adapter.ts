@@ -18,8 +18,11 @@ import { IUsersService } from './users.service';
 
 @Injectable()
 export class UsersAdapter implements ITableService<IUser> {
-  constructor(private service: IUsersService) {}
-  getTableData(params: HttpParamsOptions): Observable<ITableData<IUser>> {
+  public constructor(private service: IUsersService) {}
+
+  public getTableData(
+    params: HttpParamsOptions
+  ): Observable<ITableData<IUser>> {
     return this.service.getList(params).pipe(
       map((res) => {
         const users: IJSonApiResourceObjects<UserDto>[] = Array.isArray(
@@ -36,7 +39,7 @@ export class UsersAdapter implements ITableService<IUser> {
     );
   }
 
-  getOne(id: string): Observable<IUser | null> {
+  public getOne(id: string): Observable<IUser | null> {
     return this.service
       .getOne(id)
       .pipe(
@@ -46,15 +49,15 @@ export class UsersAdapter implements ITableService<IUser> {
       );
   }
 
-  create(user: IUserAttributes): Observable<IUser> {
+  public create(user: IUserAttributes): Observable<IUser> {
     return throwError('not implemented yet');
   }
 
-  update(id: string, user: Partial<IUserAttributes>): Observable<IUser> {
+  public update(id: string, user: Partial<IUserAttributes>): Observable<IUser> {
     return throwError('not implemented');
   }
 
-  delete(id: string): Observable<void> {
+  public delete(id: string): Observable<void> {
     return throwError('not implemented');
   }
 

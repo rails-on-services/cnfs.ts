@@ -27,21 +27,17 @@ export class CustomDataSource<T> extends DataSource<T> {
   private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<
     boolean
   >(false);
-  // used for toggle spinner loading
-  public loading$: Observable<boolean> = this.loadingSubject.asObservable();
   private changeFilterSearch: BehaviorSubject<number> = new BehaviorSubject<
     number
   >(0);
   // used for setUp pagination index page to 0 when searching
-  public changeSearch$: Observable<
-    number
-  > = this.changeFilterSearch.asObservable();
-  public state$: BehaviorSubject<DataSourceStates> = new BehaviorSubject<
+  // private changeSearch$: Observable<
+  //   number
+  // > = this.changeFilterSearch.asObservable();
+  private state$: BehaviorSubject<DataSourceStates> = new BehaviorSubject<
     DataSourceStates
   >(DataSourceStates.firstLoading);
   private lengthData: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  // used for set all length items the pagination component
-  public length$: Observable<number> = this.lengthData.asObservable();
   private pageIndex: number;
 
   // use for set included params
@@ -51,8 +47,14 @@ export class CustomDataSource<T> extends DataSource<T> {
   private privateSort: Sort;
   private privateFilter: { [key: string]: string };
 
+  // used for set all length items the pagination component
+  public length$: Observable<number> = this.lengthData.asObservable();
+
+  // used for toggle spinner loading
+  public loading$: Observable<boolean> = this.loadingSubject.asObservable();
+
   // default items on the page set up pageSize
-  constructor(
+  public constructor(
     public dataService: ITableService<T>,
     public pageSize: number = 5,
     params?: HttpParamsOptions
@@ -64,56 +66,7 @@ export class CustomDataSource<T> extends DataSource<T> {
     this.updateData(DataSourceUpdateSchema.firstPage);
   }
 
-  public get length(): number {
-    return this.lengthData.value;
-  }
-
-  public set params(value: HttpParamsOptions) {
-    this.privateParams = value;
-    this.loadingData();
-  }
-
-  public get params(): HttpParamsOptions {
-    return this.privateParams || {};
-  }
-
-  public get data(): T[] {
-    return this.dataSubject.value;
-  }
-
-  public get data$(): Observable<T[]> {
-    return this.dataSubject.asObservable();
-  }
-
-  public get state(): DataSourceStates {
-    return this.state$.value;
-  }
-
-  public get hasData$(): Observable<boolean> {
-    return this.dataSubject.pipe(map((data) => data.length > 0));
-  }
-
-  public get sort(): Sort {
-    return this.privateSort;
-  }
-
-  public set sort(val: Sort) {
-    this.privateSort = val;
-    this.changeFilterSearch.next(0);
-    this.updateData(DataSourceUpdateSchema.firstPage);
-  }
-
-  private set filter(value: { [key: string]: string } | string) {
-    if (typeof value === 'string') {
-      this.privateFilter = JSON.parse(value);
-    } else {
-      this.privateFilter = value;
-    }
-    this.changeFilterSearch.next(0);
-    this.updateData(DataSourceUpdateSchema.firstPage);
-  }
-
-  public set $filter(filter: Observable<{ [key: string]: string }>) {
+  public set filter$(filter: Observable<{ [key: string]: string }>) {
     filter.subscribe((item) => (this.filter = item));
   }
 
@@ -142,7 +95,65 @@ export class CustomDataSource<T> extends DataSource<T> {
     this.lengthData.complete();
   }
 
-  public updateData(
+  public get length(): number {
+    return this.lengthData.value;
+  }
+
+  public set sort(sort: MatSort) {
+    if (!sort) {
+      throw new Error('sort is undefined');
+    }
+    sort.sortChange
+      .pipe(debounceTime(300), takeUntil(this.destroy$))
+      .subscribe((newSort) => (this.sort_ = newSort));
+  }
+
+  private set params(value: HttpParamsOptions) {
+    this.privateParams = value;
+    this.loadingData();
+  }
+
+  private get params(): HttpParamsOptions {
+    return this.privateParams || {};
+  }
+
+  private get data(): T[] {
+    return this.dataSubject.value;
+  }
+
+  private get data$(): Observable<T[]> {
+    return this.dataSubject.asObservable();
+  }
+
+  private get state(): DataSourceStates {
+    return this.state$.value;
+  }
+
+  private get hasData$(): Observable<boolean> {
+    return this.dataSubject.pipe(map((data) => data.length > 0));
+  }
+
+  private get sort_(): Sort {
+    return this.privateSort;
+  }
+
+  private set sort_(val: Sort) {
+    this.privateSort = val;
+    this.changeFilterSearch.next(0);
+    this.updateData(DataSourceUpdateSchema.firstPage);
+  }
+
+  private set filter(value: { [key: string]: string } | string) {
+    if (typeof value === 'string') {
+      this.privateFilter = JSON.parse(value);
+    } else {
+      this.privateFilter = value;
+    }
+    this.changeFilterSearch.next(0);
+    this.updateData(DataSourceUpdateSchema.firstPage);
+  }
+
+  private updateData(
     schema: DataSourceUpdateSchema = DataSourceUpdateSchema.firstPage
   ): void {
     switch (schema) {
@@ -155,21 +166,12 @@ export class CustomDataSource<T> extends DataSource<T> {
     this.loadingData();
   }
 
-  public registerSort(sort: MatSort): void {
-    if (!sort) {
-      throw new Error('sort is undefined');
-    }
-    sort.sortChange
-      .pipe(debounceTime(300), takeUntil(this.destroy$))
-      .subscribe((newSort) => (this.sort = newSort));
-  }
-
   private loadingData(): void {
     const pageNum = this.pageIndex + 1;
     const params: HttpParamsOptions = {
       ...this.params,
       ...this.prepareFilters(),
-      ...this.sortPrepare(this.sort),
+      ...this.sortPrepare(this.sort_),
       'page[number]': pageNum,
       'page[size]': this.pageSize,
     };

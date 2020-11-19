@@ -15,7 +15,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 const routes: Routes = [
   {
     path: 'iam',
-    loadChildren: () => import('@cnfs/iam').then((m) => m.IamModule),
+    loadChildren: (): Promise<unknown> =>
+      import('@cnfs/iam').then((m) => m.IamModule),
   },
   {
     path: '',

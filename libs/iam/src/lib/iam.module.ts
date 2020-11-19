@@ -6,9 +6,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule, Routes } from '@angular/router';
+import { TableModule } from '@cnfs/angular-table';
 import { CnfsCommonModule } from '@cnfs/common';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { UsersComponent } from './components/users/users.component';
@@ -46,7 +48,9 @@ const routes: Routes = [
     MatIconModule,
     ReactiveFormsModule,
     MatButtonModule,
+    MatProgressBarModule,
     CnfsCommonModule,
+    TableModule,
     RouterModule.forChild(routes),
   ],
   providers: [

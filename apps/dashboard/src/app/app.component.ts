@@ -9,9 +9,11 @@ import { DialogComponent, NotificationService, PopupData } from '@cnfs/common';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  links: { label: string; route: string }[] = [{ label: 'IAM', route: 'iam' }];
+  public links: { label: string; route: string }[] = [
+    { label: 'IAM', route: 'iam' },
+  ];
 
-  constructor(
+  public constructor(
     private notificationService: NotificationService,
     private snackBar: MatSnackBar,
     private dialog: MatDialog

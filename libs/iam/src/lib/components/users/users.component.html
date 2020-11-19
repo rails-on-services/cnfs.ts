@@ -40,9 +40,8 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-<mat-paginator
-  [length]="dataSource.length$ | async"
-  [pageSize]="10"
-  [pageSizeOptions]="[5, 10, 25, 100]"
->
-</mat-paginator>
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="dataSource.loading$ | async"
+></mat-progress-bar>
+<cnfs-paginator [dataSource]="dataSource"></cnfs-paginator>

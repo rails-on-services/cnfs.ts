@@ -12,27 +12,27 @@ import { UsersAdapter } from '../../services/users.adapter';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements AfterViewInit {
-  dataSource: CustomDataSource<IUser>;
-  displayedColumns: string[] = ['firstName', 'createdAt', 'actions'];
-  @ViewChild(MatSort) sort: MatSort;
-  filter: FormGroup = this.fb.group({
+  public dataSource: CustomDataSource<IUser>;
+  public displayedColumns: string[] = ['firstName', 'createdAt', 'actions'];
+  @ViewChild(MatSort) public sort: MatSort;
+  public filter: FormGroup = this.fb.group({
     firstName: [],
   });
 
-  constructor(
+  public constructor(
     private usersAdapter: UsersAdapter,
     private fb: FormBuilder,
     private notificationService: NotificationService
   ) {
     this.dataSource = new CustomDataSource(usersAdapter);
-    this.dataSource.$filter = this.filter.valueChanges;
+    this.dataSource.filter$ = this.filter.valueChanges;
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.registerSort(this.sort);
+  public ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
-  onDelete(user: IUser): void {
+  public onDelete(user: IUser): void {
     this.notificationService.addPopup({
       title: 'Are you sure?',
       text: 'This cannot be reverted',

@@ -15,19 +15,19 @@ export interface PopupData {
   styleUrls: ['./dialog.component.scss'],
 })
 export class DialogComponent {
-  constructor(
+  public constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: PopupData
   ) {}
 
-  onNoClick(): void {
+  public onNoClick(): void {
     this.dialogRef.close(false);
     if (this.data.callback) {
       this.data.callback(false);
     }
   }
 
-  onYesClick(): void {
+  public onYesClick(): void {
     this.dialogRef.close(true);
     if (this.data.callback) {
       this.data.callback(true);
