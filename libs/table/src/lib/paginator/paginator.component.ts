@@ -9,7 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 })
 export class PaginatorComponent implements AfterViewInit {
   @Input('dataSource')
-  public dataSource: CustomDataSource<unknown>;
+  public dataSource?: CustomDataSource<unknown>;
   @Input('pageSize')
   public pageSize = 10;
   @Input('pageSizeOptions')
@@ -18,6 +18,8 @@ export class PaginatorComponent implements AfterViewInit {
   public paginator: MatPaginator;
 
   public ngAfterViewInit(): void {
-    this.dataSource.pages$ = this.paginator.page;
+    if (this.dataSource && this.paginator) {
+      this.dataSource.pages$ = this.paginator.page;
+    }
   }
 }
