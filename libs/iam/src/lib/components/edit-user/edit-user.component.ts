@@ -13,12 +13,12 @@ import { UsersAdapter } from '../../services/users.adapter';
   styleUrls: ['./edit-user.component.scss'],
 })
 export class EditUserComponent {
-  form: FormGroup = this.fb.group({
+  public form: FormGroup = this.fb.group({
     firstName: ['', [Validators.required, Validators.minLength(1)]],
   });
-  user: IUser | null = null;
+  private user: IUser | null = null;
 
-  constructor(
+  public constructor(
     private fb: FormBuilder,
     private router: Router,
     private location: Location,
@@ -40,7 +40,7 @@ export class EditUserComponent {
       .subscribe((user: IUser) => (this.user = user));
   }
 
-  onSave(): void {
+  public onSave(): void {
     if (!this.form.valid) {
       return;
     }
@@ -60,7 +60,7 @@ export class EditUserComponent {
     );
   }
 
-  onCancel(): void {
+  public onCancel(): void {
     try {
       this.location.back();
     } catch {

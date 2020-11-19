@@ -1,3 +1,5 @@
+@use '~@angular/material/theming' as material;
+
 th.mat-sort-header-sorted {
   color: black;
 }
@@ -7,4 +9,15 @@ table {
 }
 .search-filter {
   width: 100%;
+}
+
+$warn: material.mat-palette(material.$mat-red);
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+  color: material.mat-color($warn);
 }

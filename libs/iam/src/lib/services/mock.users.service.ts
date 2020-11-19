@@ -1,20 +1,20 @@
-import { Observable, of } from 'rxjs';
-
 import { HttpParamsOptions } from '@cnfs/angular-table';
 import {
   IJsonApiResourceCollectionPayload,
   IJSonApiResourceObjects,
   IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
-
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { UserDto } from '../models/user.dto';
 import { sample } from './sample';
 import { IUsersService } from './users.service';
 
 export class MockUsersService implements IUsersService {
-  getList(
+  public getList(
     params: HttpParamsOptions
   ): Observable<IJsonApiResourceCollectionPayload<UserDto>> {
+    console.log(params);
     let users: IJSonApiResourceObjects<UserDto>[] = Array.isArray(sample.data)
       ? sample.data
       : [];
@@ -80,13 +80,19 @@ export class MockUsersService implements IUsersService {
         }
       );
     }
+    const pageNumber: number = parseInt(`${params['page[number]']}` || '1');
+    const pageSize: number = parseInt(`${params['page[size]']}` || '5');
+
+    users = users.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
     return of({
       ...sample,
       data: users,
-    });
+    }).pipe(delay(1000));
   }
 
-  getOne(id: string): Observable<IJsonApiSingleResourcePayload<UserDto>> {
+  public getOne(
+    id: string
+  ): Observable<IJsonApiSingleResourcePayload<UserDto>> {
     const user: IJSonApiResourceObjects<UserDto> | null =
       sample.data
         .filter((user: IJSonApiResourceObjects<UserDto>) => user.id === id)
