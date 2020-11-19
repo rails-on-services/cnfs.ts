@@ -44,4 +44,7 @@
   mode="indeterminate"
   *ngIf="dataSource.loading$ | async"
 ></mat-progress-bar>
+<div *ngIf="dataSource.error$ | async as error" class="error">
+  <mat-icon>error</mat-icon><span>{{ error }}</span>
+</div>
 <cnfs-paginator [dataSource]="dataSource"></cnfs-paginator>

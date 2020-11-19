@@ -1,6 +1,6 @@
 <mat-paginator
+  #paginator
+  [length]="dataSource.length$ | async"
   [pageSize]="pageSize"
   [pageSizeOptions]="pageSizeOptions"
 ></mat-paginator>
-<!-- [length]="dataSource."
-  (page)="pageEvent = $event" -->

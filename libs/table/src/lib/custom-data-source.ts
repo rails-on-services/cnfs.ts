@@ -1,13 +1,11 @@
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
-import { debounceTime, map, takeUntil } from 'rxjs/operators';
-
 import { DataSource } from '@angular/cdk/collections';
 import { MatSort, Sort } from '@angular/material/sort';
-
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 import { ITableData } from './data-list.interface';
-import { IPagination } from './ipagination';
 import { HttpParamsOptions } from './params-map';
 import { ITableService } from './table-service-interface';
+import { PageEvent } from '@angular/material/paginator';
 
 // enum of states for manage view in pages where used data source
 export enum DataSourceStates {
@@ -23,62 +21,45 @@ export enum DataSourceUpdateSchema {
 }
 
 export class CustomDataSource<T> extends DataSource<T> {
-  private dataSubject: BehaviorSubject<T[]> = new BehaviorSubject<T[]>([]);
-  private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject<
-    boolean
-  >(false);
-  private changeFilterSearch: BehaviorSubject<number> = new BehaviorSubject<
-    number
-  >(0);
-  // used for setUp pagination index page to 0 when searching
-  // private changeSearch$: Observable<
-  //   number
-  // > = this.changeFilterSearch.asObservable();
-  private state$: BehaviorSubject<DataSourceStates> = new BehaviorSubject<
-    DataSourceStates
-  >(DataSourceStates.firstLoading);
-  private lengthData: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  private pageIndex: number;
+  private dataSubject: BehaviorSubject<T[]> = new BehaviorSubject([]);
+  private loadingSubject: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private lengthSubject: BehaviorSubject<number> = new BehaviorSubject(0);
+  private errorSubject: BehaviorSubject<string | null> = new BehaviorSubject(
+    null
+  );
 
-  // use for set included params
-  private privateParams: HttpParamsOptions;
   private destroy$: Subject<void> = new Subject();
   private request: Subscription;
   private privateSort: Sort;
   private privateFilter: { [key: string]: string };
 
-  // used for set all length items the pagination component
-  public length$: Observable<number> = this.lengthData.asObservable();
-
-  // used for toggle spinner loading
-  public loading$: Observable<boolean> = this.loadingSubject.asObservable();
-
   // default items on the page set up pageSize
   public constructor(
     public dataService: ITableService<T>,
-    public pageSize: number = 5,
-    params?: HttpParamsOptions
+    private pageSize: number = 10,
+    private pageIndex: number = 1,
+    private initParams: HttpParamsOptions = {}
   ) {
     super();
-    if (params) {
-      this.params = params;
-    }
     this.updateData(DataSourceUpdateSchema.firstPage);
+  }
+
+  // used for set all length items the pagination component
+  public get length$(): Observable<number> {
+    return this.lengthSubject;
+  }
+
+  // used for toggle spinner loading
+  public get loading$(): Observable<boolean> {
+    return this.loadingSubject;
+  }
+
+  public get error$(): Observable<string | null> {
+    return this.errorSubject;
   }
 
   public set filter$(filter: Observable<{ [key: string]: string }>) {
     filter.subscribe((item) => (this.filter = item));
-  }
-
-  public set pagination(value: IPagination) {
-    if (this.pageSize !== value.pageSize) {
-      this.pageSize = value.pageSize;
-      this.changeFilterSearch.next(0);
-    }
-    if (this.pageIndex !== value.pageIndex) {
-      this.pageIndex = value.pageIndex;
-    }
-    this.updateData(DataSourceUpdateSchema.currentPage);
   }
 
   public connect(): Observable<T[]> {
@@ -90,13 +71,8 @@ export class CustomDataSource<T> extends DataSource<T> {
     this.destroy$.next();
     this.destroy$.complete();
     this.dataSubject.complete();
-    this.changeFilterSearch.complete();
     this.loadingSubject.complete();
-    this.lengthData.complete();
-  }
-
-  public get length(): number {
-    return this.lengthData.value;
+    this.lengthSubject.complete();
   }
 
   public set sort(sort: MatSort) {
@@ -105,42 +81,50 @@ export class CustomDataSource<T> extends DataSource<T> {
     }
     sort.sortChange
       .pipe(debounceTime(300), takeUntil(this.destroy$))
-      .subscribe((newSort) => (this.sort_ = newSort));
+      .subscribe((newSort) => {
+        this.privateSort = newSort;
+        this.updateData(DataSourceUpdateSchema.firstPage);
+      });
   }
 
-  private set params(value: HttpParamsOptions) {
-    this.privateParams = value;
-    this.loadingData();
+  public set pages$(pages: Observable<PageEvent>) {
+    pages.subscribe((evt: PageEvent) => {
+      this.pageIndex = evt.pageIndex;
+      this.pageSize = evt.pageSize;
+      this.refresh();
+    });
   }
 
-  private get params(): HttpParamsOptions {
-    return this.privateParams || {};
-  }
-
-  private get data(): T[] {
-    return this.dataSubject.value;
-  }
-
-  private get data$(): Observable<T[]> {
-    return this.dataSubject.asObservable();
-  }
-
-  private get state(): DataSourceStates {
-    return this.state$.value;
-  }
-
-  private get hasData$(): Observable<boolean> {
-    return this.dataSubject.pipe(map((data) => data.length > 0));
-  }
-
-  private get sort_(): Sort {
-    return this.privateSort;
-  }
-
-  private set sort_(val: Sort) {
-    this.privateSort = val;
-    this.changeFilterSearch.next(0);
-    this.updateData(DataSourceUpdateSchema.firstPage);
+  public refresh(): void {
+    const pageNum = this.pageIndex + 1;
+    const params: HttpParamsOptions = {
+      ...this.initParams,
+      ...this.prepareFilters(),
+      ...this.sortPrepare(this.privateSort),
+      'page[number]': pageNum,
+      'page[size]': this.pageSize,
+    };
+    if (this.request) {
+      this.request.unsubscribe();
+    }
+    this.loadingSubject.next(true);
+    if (!isNaN(pageNum)) {
+      this.request = this.dataService.getTableData(params).subscribe(
+        (res: ITableData<T>) => {
+          this.dataSubject.next(res.data);
+          this.lengthSubject.next(res.meta?.record_count || 0);
+          this.loadingSubject.next(false);
+          this.errorSubject.next(null);
+        },
+        () => {
+          this.dataSubject.next([]);
+          this.lengthSubject.next(0);
+          this.loadingSubject.next(false);
+          this.errorSubject.next('Could not load data');
+          // this.setState(DataSourceStates.errorApi);
+        }
+      );
+    }
   }
 
   private set filter(value: { [key: string]: string } | string) {
@@ -149,7 +133,6 @@ export class CustomDataSource<T> extends DataSource<T> {
     } else {
       this.privateFilter = value;
     }
-    this.changeFilterSearch.next(0);
     this.updateData(DataSourceUpdateSchema.firstPage);
   }
 
@@ -163,51 +146,7 @@ export class CustomDataSource<T> extends DataSource<T> {
       case DataSourceUpdateSchema.currentPage:
         break;
     }
-    this.loadingData();
-  }
-
-  private loadingData(): void {
-    const pageNum = this.pageIndex + 1;
-    const params: HttpParamsOptions = {
-      ...this.params,
-      ...this.prepareFilters(),
-      ...this.sortPrepare(this.sort_),
-      'page[number]': pageNum,
-      'page[size]': this.pageSize,
-    };
-    if (this.request) {
-      this.request.unsubscribe();
-    }
-    this.loadingSubject.next(true);
-    if (!isNaN(pageNum)) {
-      this.request = this.dataService.getTableData(params).subscribe(
-        (res: ITableData<T>) => {
-          this.dataSubject.next(res.data);
-          this.lengthData.next(res.meta?.record_count || 0);
-          this.loadingSubject.next(false);
-          const status =
-            res.data.length > 0 && (res.meta?.record_count || 0) > 0
-              ? DataSourceStates.hasDataApi
-              : DataSourceStates.noDataApi;
-          this.setState(status);
-        },
-        () => {
-          this.dataSubject.next([]);
-          this.lengthData.next(0);
-          this.loadingSubject.next(false);
-          this.setState(DataSourceStates.errorApi);
-        }
-      );
-    }
-  }
-
-  private setState(state: DataSourceStates): void {
-    if (
-      this.state$.value === DataSourceStates.firstLoading ||
-      this.state$.value === DataSourceStates.noDataApi
-    ) {
-      this.state$.next(state);
-    }
+    this.refresh();
   }
 
   private sortPrepare(sortData: Sort): { [key: string]: string } {

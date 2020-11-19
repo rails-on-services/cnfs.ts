@@ -29,7 +29,8 @@
           { "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }
         ]
       }
-    ]
+    ],
+    "@typescript-eslint/no-inferrable-types": "off"
   },
   "overrides": [
     {
