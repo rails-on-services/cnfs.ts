@@ -6,38 +6,36 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { RouterModule, Routes } from '@angular/router';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RouterModule } from '@angular/router';
 import { TableModule } from '@cnfs/angular-table';
 import { CnfsCommonModule } from '@cnfs/common';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { UsersComponent } from './components/users/users.component';
-import { IamComponent } from './pages/iam.component';
+import { GroupListComponent } from './components/group-list/group-list.component';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { GroupsComponent } from './pages/groups/groups.component';
+import { IamComponent } from './pages/iam/iam.component';
+import { RolesComponent } from './pages/roles/roles.component';
+import { UsersComponent } from './pages/users/users.component';
+import { routes } from './routes';
+import { GroupsAdapter } from './services/groups.adapter';
 import { MockUsersService } from './services/mock.users.service';
 import { UsersAdapter } from './services/users.adapter';
 import { IUsersService } from './services/users.service';
 
-const routes: Routes = [
-  {
-    path: '',
-    pathMatch: 'prefix',
-    component: IamComponent,
-    children: [
-      { path: 'users', component: UsersComponent, pathMatch: 'prefix' },
-      {
-        path: 'edit/:userId',
-        component: EditUserComponent,
-        pathMatch: 'prefix',
-      },
-      { path: '', pathMatch: 'full', redirectTo: 'users' },
-    ],
-  },
-  // { path: '*', redirectTo: '' },
-];
 @NgModule({
-  declarations: [IamComponent, UsersComponent, EditUserComponent],
+  declarations: [
+    IamComponent,
+    UsersComponent,
+    UserListComponent,
+    UsersComponent,
+    EditUserComponent,
+    GroupsComponent,
+    RolesComponent,
+    GroupListComponent,
+  ],
   imports: [
     CommonModule,
     MatTableModule,
@@ -46,9 +44,9 @@ const routes: Routes = [
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    ReactiveFormsModule,
+    MatTabsModule,
     MatButtonModule,
-    MatProgressBarModule,
+    ReactiveFormsModule,
     CnfsCommonModule,
     TableModule,
     RouterModule.forChild(routes),
@@ -56,6 +54,7 @@ const routes: Routes = [
   providers: [
     { provide: IUsersService, useClass: MockUsersService },
     UsersAdapter,
+    GroupsAdapter,
   ],
 })
 export class IamModule {}

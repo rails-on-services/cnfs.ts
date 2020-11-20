@@ -1,9 +1,11 @@
+import { filter, map, switchMap, tap } from 'rxjs/operators';
+
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { NotificationService } from '@cnfs/common';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+
 import { IUser } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
@@ -55,7 +57,8 @@ export class EditUserComponent {
         this.notificationService.addSnack(`Item saved`);
         this.onCancel();
       },
-      (err) => this.notificationService.addSnack(`Failed to save user ${err}`),
+      (err) =>
+        this.notificationService.addSnack(`Failed to save user '${err}'`),
       () => console.log('finally')
     );
   }

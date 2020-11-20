@@ -4,6 +4,7 @@ import { NotificationService } from './notification.service';
 import { DialogComponent } from './dialog/dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 
 // make sure we have only one instance of the NotificationService
 export function notificationServiceFactory(): NotificationService {
@@ -24,7 +25,7 @@ export function notificationServiceFactory(): NotificationService {
   providers: [
     { provide: NotificationService, useFactory: notificationServiceFactory },
   ],
-  declarations: [DialogComponent],
-  exports: [DialogComponent],
+  declarations: [DialogComponent, ComingSoonComponent],
+  exports: [DialogComponent, ComingSoonComponent],
 })
 export class CnfsCommonModule {}

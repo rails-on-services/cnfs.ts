@@ -1,20 +1,21 @@
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+
 import { HttpParamsOptions } from '@cnfs/angular-table';
 import {
   IJsonApiResourceCollectionPayload,
   IJSonApiResourceObjects,
   IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+
 import { UserDto } from '../models/user.dto';
-import { sample } from './sample';
+import { sample } from './sample-users';
 import { IUsersService } from './users.service';
 
 export class MockUsersService implements IUsersService {
   public getList(
     params: HttpParamsOptions
   ): Observable<IJsonApiResourceCollectionPayload<UserDto>> {
-    console.log(params);
     let users: IJSonApiResourceObjects<UserDto>[] = Array.isArray(sample.data)
       ? sample.data
       : [];
@@ -87,7 +88,7 @@ export class MockUsersService implements IUsersService {
     return of({
       ...sample,
       data: users,
-    }).pipe(delay(1000));
+    }).pipe(delay(200));
   }
 
   public getOne(

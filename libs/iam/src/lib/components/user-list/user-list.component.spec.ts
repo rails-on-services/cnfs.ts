@@ -1,3 +1,5 @@
+import { of } from 'rxjs';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,7 +13,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
 import { NotificationService } from '@cnfs/common';
-import { of } from 'rxjs';
+
 import { UsersAdapter } from '../../services/users.adapter';
 import { UsersComponent } from './users.component';
 

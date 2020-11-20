@@ -1,31 +1,47 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { CustomDataSource } from '@cnfs/angular-table';
 import { NotificationService } from '@cnfs/common';
+
 import { IUser } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
 @Component({
-  selector: 'cnfs-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: 'cnfs-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss'],
 })
-export class UsersComponent implements AfterViewInit {
-  public dataSource: CustomDataSource<IUser>;
-  public displayedColumns: string[] = ['firstName', 'createdAt', 'actions'];
+export class UserListComponent implements AfterViewInit, OnChanges {
+  @Input() public displayedColumns: string[] = [
+    'firstName',
+    'createdAt',
+    'actions',
+  ];
+  @Input() public filter: FormGroup | undefined;
+
   @ViewChild(MatSort) public sort: MatSort;
-  public filter: FormGroup = this.fb.group({
-    firstName: [],
-  });
+
+  public dataSource: CustomDataSource<IUser>;
 
   public constructor(
     private usersAdapter: UsersAdapter,
-    private fb: FormBuilder,
     private notificationService: NotificationService
   ) {
     this.dataSource = new CustomDataSource(usersAdapter);
-    this.dataSource.filter$ = this.filter.valueChanges;
+  }
+
+  public ngOnChanges(changes: SimpleChanges): void {
+    if (changes.filter && this.filter) {
+      this.dataSource.filter$ = this.filter.valueChanges;
+    }
   }
 
   public ngAfterViewInit(): void {

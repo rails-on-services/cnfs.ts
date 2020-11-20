@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationService } from '@cnfs/common';
+
 import { UsersAdapter } from '../../services/users.adapter';
 import { EditUserComponent } from './edit-user.component';
 
