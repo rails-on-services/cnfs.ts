@@ -6,10 +6,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
+import { NotificationService } from '@cnfs/common';
+import { of } from 'rxjs';
 import { UserListComponent } from '../../components/user-list/user-list.component';
 import { UsersAdapter } from '../../services/users.adapter';
 import { UsersComponent } from './users.component';
-import { of } from 'rxjs';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -21,6 +22,7 @@ describe('UsersComponent', () => {
         meta: {},
       }),
   };
+  const notificationServiceMock: Partial<NotificationService> = {};
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UsersComponent, UserListComponent],
@@ -33,7 +35,10 @@ describe('UsersComponent', () => {
         TableModule,
         RouterTestingModule,
       ],
-      providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
+      providers: [
+        { provide: UsersAdapter, useValue: usersAdapterMock },
+        { provide: NotificationService, useValue: notificationServiceMock },
+      ],
     }).compileComponents();
   });
 

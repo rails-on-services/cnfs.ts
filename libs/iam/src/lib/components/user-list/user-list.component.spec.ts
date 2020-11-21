@@ -1,5 +1,3 @@
-import { of } from 'rxjs';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,12 +10,11 @@ import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
-import { NotificationService } from '@cnfs/common';
-
+import { of } from 'rxjs';
 import { UsersAdapter } from '../../services/users.adapter';
 import { UserListComponent } from './user-list.component';
 
-describe('UserComponent', () => {
+describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
   const usersAdapterMock: Partial<UsersAdapter> = {
@@ -27,7 +24,6 @@ describe('UserComponent', () => {
         meta: {},
       }),
   };
-  const notificationServiceMock: Partial<NotificationService> = {};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -45,10 +41,7 @@ describe('UserComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
       ],
-      providers: [
-        { provide: UsersAdapter, useValue: usersAdapterMock },
-        { provide: NotificationService, useValue: notificationServiceMock },
-      ],
+      providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
     }).compileComponents();
   });
 
