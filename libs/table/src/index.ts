@@ -4,3 +4,4 @@ export * from './lib/table-service-interface';
 export * from './lib/params-map';
 export * from './lib/data-list.interface';
 export * from './lib/paginator/paginator.component';
+export * from './lib/loader/loader.component';

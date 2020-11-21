@@ -7,12 +7,20 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
 import { UserListComponent } from '../../components/user-list/user-list.component';
+import { UsersAdapter } from '../../services/users.adapter';
 import { UsersComponent } from './users.component';
+import { of } from 'rxjs';
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
   let fixture: ComponentFixture<UsersComponent>;
-
+  const usersAdapterMock: Partial<UsersAdapter> = {
+    getTableData: () =>
+      of({
+        data: [],
+        meta: {},
+      }),
+  };
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [UsersComponent, UserListComponent],
@@ -25,6 +33,7 @@ describe('UsersComponent', () => {
         TableModule,
         RouterTestingModule,
       ],
+      providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
     }).compileComponents();
   });
 
