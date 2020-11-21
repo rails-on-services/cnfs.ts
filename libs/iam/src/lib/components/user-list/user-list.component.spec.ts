@@ -15,11 +15,11 @@ import { TableModule } from '@cnfs/angular-table';
 import { NotificationService } from '@cnfs/common';
 
 import { UsersAdapter } from '../../services/users.adapter';
-import { UsersComponent } from './users.component';
+import { UserListComponent } from './user-list.component';
 
-describe('UsersComponent', () => {
-  let component: UsersComponent;
-  let fixture: ComponentFixture<UsersComponent>;
+describe('UserComponent', () => {
+  let component: UserListComponent;
+  let fixture: ComponentFixture<UserListComponent>;
   const usersAdapterMock: Partial<UsersAdapter> = {
     getTableData: () =>
       of({
@@ -31,7 +31,7 @@ describe('UsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsersComponent],
+      declarations: [UserListComponent],
       imports: [
         MatIconModule,
         ReactiveFormsModule,
@@ -53,7 +53,7 @@ describe('UsersComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsersComponent);
+    fixture = TestBed.createComponent(UserListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

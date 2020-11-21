@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatTableModule } from '@angular/material/table';
+import { TableModule } from '@cnfs/angular-table';
+import { GroupListComponent } from '../../components/group-list/group-list.component';
 import { GroupsComponent } from './groups.component';
 
 describe('GroupsComponent', () => {
@@ -8,7 +10,8 @@ describe('GroupsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [GroupsComponent],
+      declarations: [GroupsComponent, GroupListComponent],
+      imports: [MatTableModule, TableModule],
     }).compileComponents();
   });
 

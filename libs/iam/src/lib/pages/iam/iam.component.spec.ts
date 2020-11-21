@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTabsModule } from '@angular/material/tabs';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { IamComponent } from './iam.component';
 
 describe('IamComponent', () => {
@@ -10,7 +10,7 @@ describe('IamComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [IamComponent],
-      imports: [RouterTestingModule],
+      imports: [RouterTestingModule, MatTabsModule],
     }).compileComponents();
   });
 
