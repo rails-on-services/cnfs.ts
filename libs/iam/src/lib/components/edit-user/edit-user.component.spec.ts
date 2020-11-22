@@ -5,14 +5,14 @@ import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationService } from '@cnfs/common';
+import { notificationServiceMock } from '../../mocks/notification.service';
+import { usersAdapterMock } from '../../mocks/users.adapter';
 import { UsersAdapter } from '../../services/users.adapter';
 import { EditUserComponent } from './edit-user.component';
 
 describe('EditUserComponent', () => {
   let component: EditUserComponent;
   let fixture: ComponentFixture<EditUserComponent>;
-  const usersAdapterMock: Partial<UsersAdapter> = {};
-  const notificationServiceMock: Partial<NotificationService> = {};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

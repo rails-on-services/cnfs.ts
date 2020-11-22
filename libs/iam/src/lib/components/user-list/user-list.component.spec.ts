@@ -10,20 +10,15 @@ import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
-import { of } from 'rxjs';
+import { NotificationService } from '@cnfs/common';
+import { notificationServiceMock } from '../../mocks/notification.service';
+import { usersAdapterMock } from '../../mocks/users.adapter';
 import { UsersAdapter } from '../../services/users.adapter';
 import { UserListComponent } from './user-list.component';
 
 describe('UserListComponent', () => {
   let component: UserListComponent;
   let fixture: ComponentFixture<UserListComponent>;
-  const usersAdapterMock: Partial<UsersAdapter> = {
-    getTableData: () =>
-      of({
-        data: [],
-        meta: {},
-      }),
-  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -41,7 +36,10 @@ describe('UserListComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
       ],
-      providers: [{ provide: UsersAdapter, useValue: usersAdapterMock }],
+      providers: [
+        { provide: UsersAdapter, useValue: usersAdapterMock },
+        { provide: NotificationService, useValue: notificationServiceMock },
+      ],
     }).compileComponents();
   });
 
