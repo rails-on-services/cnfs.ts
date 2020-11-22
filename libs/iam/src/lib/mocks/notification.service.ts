@@ -1,4 +1,4 @@
-import { Subject } from "rxjs";
+import { Subject } from 'rxjs';
 import { NotificationService } from '@cnfs/common';
 
 // { provide: NotificationService, useValue: notificationServiceMock },

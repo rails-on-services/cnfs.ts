@@ -3,8 +3,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,14 +22,12 @@ describe('UserListComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [UserListComponent],
       imports: [
-        MatIconModule,
         ReactiveFormsModule,
-        MatPaginatorModule,
-        MatFormFieldModule,
-        MatTableModule,
         MatInputModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatTableModule,
         MatSortModule,
-        MatProgressBarModule,
         TableModule,
         RouterTestingModule,
         NoopAnimationsModule,

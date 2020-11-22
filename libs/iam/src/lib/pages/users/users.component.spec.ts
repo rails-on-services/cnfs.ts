@@ -1,19 +1,22 @@
+import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
-import { NotificationService } from '@cnfs/common';
-import { UserListComponent } from '../../components/user-list/user-list.component';
-import { notificationServiceMock } from '../../mocks/notification.service';
-import { usersAdapterMock } from '../../mocks/users.adapter';
-import { UsersAdapter } from '../../services/users.adapter';
 import { UsersComponent } from './users.component';
+
+@Component({
+  selector: 'cnfs-user-list',
+  template: '',
+  styles: [],
+})
+class UserListMockComponent {
+  @Input()
+  public filter: FormGroup;
+}
 
 describe('UsersComponent', () => {
   let component: UsersComponent;
@@ -21,22 +24,16 @@ describe('UsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [UsersComponent, UserListComponent],
+      declarations: [UsersComponent, UserListMockComponent],
       imports: [
         ReactiveFormsModule,
         MatInputModule,
         MatFormFieldModule,
         MatIconModule,
-        MatTableModule,
-        MatSortModule,
         TableModule,
-        RouterTestingModule,
         NoopAnimationsModule,
       ],
-      providers: [
-        { provide: UsersAdapter, useValue: usersAdapterMock },
-        { provide: NotificationService, useValue: notificationServiceMock },
-      ],
+      providers: [],
     }).compileComponents();
   });
 
