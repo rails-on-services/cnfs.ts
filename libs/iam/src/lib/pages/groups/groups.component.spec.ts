@@ -3,21 +3,15 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@cnfs/angular-table';
-import { of } from 'rxjs';
 import { GroupListComponent } from '../../components/group-list/group-list.component';
+import { groupsAdapterMock } from '../../mocks/groups.adapter';
 import { GroupsAdapter } from '../../services/groups.adapter';
 import { GroupsComponent } from './groups.component';
 
 describe('GroupsComponent', () => {
   let component: GroupsComponent;
   let fixture: ComponentFixture<GroupsComponent>;
-  const groupsAdapterMock: Partial<GroupsAdapter> = {
-    getTableData: () =>
-      of({
-        data: [],
-        meta: {},
-      }),
-  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GroupsComponent, GroupListComponent],
