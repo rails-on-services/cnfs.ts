@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@cnfs/angular-table';
@@ -20,7 +21,12 @@ describe('GroupsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GroupsComponent, GroupListComponent],
-      imports: [MatTableModule, TableModule, NoopAnimationsModule],
+      imports: [
+        MatTableModule,
+        TableModule,
+        NoopAnimationsModule,
+        MatSortModule,
+      ],
       providers: [{ provide: GroupsAdapter, useValue: groupsAdapterMock }],
     }).compileComponents();
   });

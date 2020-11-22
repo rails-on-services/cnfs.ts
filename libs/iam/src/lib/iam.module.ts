@@ -15,13 +15,13 @@ import { CnfsCommonModule } from '@cnfs/common';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { MockUsersService } from './mocks/mock.users.service';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { IamComponent } from './pages/iam/iam.component';
 import { RolesComponent } from './pages/roles/roles.component';
 import { UsersComponent } from './pages/users/users.component';
 import { routes } from './routes';
 import { GroupsAdapter } from './services/groups.adapter';
-import { MockUsersService } from './services/mock.users.service';
 import { UsersAdapter } from './services/users.adapter';
 import { IUsersService } from './services/users.service';
 

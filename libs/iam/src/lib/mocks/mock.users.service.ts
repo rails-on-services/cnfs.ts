@@ -1,16 +1,14 @@
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
-
 import { HttpParamsOptions } from '@cnfs/angular-table';
 import {
   IJsonApiResourceCollectionPayload,
   IJSonApiResourceObjects,
   IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
-
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { UserDto } from '../models/user.dto';
+import { IUsersService } from '../services/users.service';
 import { sample } from './sample-users';
-import { IUsersService } from './users.service';
 
 export class MockUsersService implements IUsersService {
   public getList(
