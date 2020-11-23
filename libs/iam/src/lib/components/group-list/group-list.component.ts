@@ -4,6 +4,7 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
@@ -17,7 +18,7 @@ import { GroupsAdapter } from '../../services/groups.adapter';
   templateUrl: './group-list.component.html',
   styleUrls: ['./group-list.component.scss'],
 })
-export class GroupListComponent implements OnChanges {
+export class GroupListComponent implements OnChanges, AfterViewInit {
   @Input() public displayedColumns: string[] = ['name'];
   @Input() public filter: FormGroup | undefined;
 

@@ -14,6 +14,7 @@ import { TableModule } from '@cnfs/angular-table';
 import { CnfsCommonModule } from '@cnfs/common';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
+import { RoleListComponent } from './components/role-list/role-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { MockUsersService } from './mocks/mock.users.service';
 import { GroupsComponent } from './pages/groups/groups.component';
@@ -22,6 +23,7 @@ import { RolesComponent } from './pages/roles/roles.component';
 import { UsersComponent } from './pages/users/users.component';
 import { routes } from './routes';
 import { GroupsAdapter } from './services/groups.adapter';
+import { RolesAdapter } from './services/roles.adapter';
 import { UsersAdapter } from './services/users.adapter';
 import { IUsersService } from './services/users.service';
 
@@ -35,6 +37,7 @@ import { IUsersService } from './services/users.service';
     GroupsComponent,
     RolesComponent,
     GroupListComponent,
+    RoleListComponent,
   ],
   imports: [
     CommonModule,
@@ -55,6 +58,8 @@ import { IUsersService } from './services/users.service';
     { provide: IUsersService, useClass: MockUsersService },
     UsersAdapter,
     GroupsAdapter,
+    RolesAdapter,
   ],
+  exports: [GroupListComponent, UserListComponent, RoleListComponent],
 })
 export class IamModule {}
