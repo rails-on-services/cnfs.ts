@@ -5,17 +5,17 @@ import {
 } from '@cnfs/angular-table';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { IGroup } from '../models/group.model';
+import { IRole } from '../models/role.model';
 
-export class GroupsAdapter implements ITableService<IGroup> {
+export class RolesAdapter implements ITableService<IRole> {
   public getTableData(
     params: HttpParamsOptions
-  ): Observable<ITableData<IGroup>> {
+  ): Observable<ITableData<IRole>> {
     //mock-data
     return of({
       data: [
-        { id: '1', name: 'Admin' },
-        { id: '2', name: 'Finance' },
+        { id: '1', name: 'Microsite' },
+        { id: '2', name: 'POS' },
       ],
       meta: {
         record_count: 2,

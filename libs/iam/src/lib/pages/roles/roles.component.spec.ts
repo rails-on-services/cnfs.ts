@@ -1,6 +1,15 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatButtonModule } from '@angular/material/button';
 import { CnfsCommonModule } from '@cnfs/common';
 import { RolesComponent } from './roles.component';
+
+@Component({
+  selector: 'cnfs-role-list',
+  template: '',
+  styles: [],
+})
+class RolesListMockComponent {}
 
 describe('RolesComponent', () => {
   let component: RolesComponent;
@@ -8,8 +17,8 @@ describe('RolesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RolesComponent],
-      imports: [CnfsCommonModule],
+      declarations: [RolesComponent, RolesListMockComponent],
+      imports: [CnfsCommonModule, MatButtonModule],
     }).compileComponents();
   });
 

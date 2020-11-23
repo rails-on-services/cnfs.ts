@@ -1,14 +1,19 @@
-<form [formGroup]="filter">
-  <mat-form-field appearance="outline" class="search-filter control-input">
-    <mat-icon matPrefix>search</mat-icon>
-    <input
-      matInput
-      type="text"
-      formControlName="firstName"
-      placeholder="Search User"
-      aria-label="Search User"
-      autocomplete="given-name"
-    />
-  </mat-form-field>
-</form>
-<cnfs-user-list [filter]="filter"></cnfs-user-list>
+<div class="scroll-body">
+  <form [formGroup]="filter">
+    <mat-form-field appearance="outline" class="search-filter control-input">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        matInput
+        type="text"
+        formControlName="firstName"
+        placeholder="Search User"
+        aria-label="Search User"
+        autocomplete="given-name"
+      />
+    </mat-form-field>
+  </form>
+  <cnfs-user-list [filter]="filter"></cnfs-user-list>
+</div>
+<a mat-fab color="accent" [routerLink]="['..', 'create-user']" class="add-fab"
+  ><mat-icon>add</mat-icon></a
+>
