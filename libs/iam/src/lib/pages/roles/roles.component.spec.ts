@@ -1,6 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CnfsCommonModule } from '@cnfs/common';
 import { RolesComponent } from './roles.component';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'cnfs-role-list',
+  template: '',
+  styles: [],
+})
+class RolesListMockComponent {}
 
 describe('RolesComponent', () => {
   let component: RolesComponent;
@@ -8,7 +16,7 @@ describe('RolesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RolesComponent],
+      declarations: [RolesComponent, RolesListMockComponent],
       imports: [CnfsCommonModule],
     }).compileComponents();
   });
