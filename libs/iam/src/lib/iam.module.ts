@@ -12,11 +12,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
 import { TableModule } from '@cnfs/angular-table';
 import { CnfsCommonModule } from '@cnfs/common';
+import { EditGroupComponent } from './components/edit-group/edit-group.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { MockUsersService } from './mocks/mock.users.service';
+import { EditGroupPageComponent } from './pages/edit-group-page/edit-group-page.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { IamComponent } from './pages/iam/iam.component';
 import { RolesComponent } from './pages/roles/roles.component';
@@ -38,6 +40,8 @@ import { IUsersService } from './services/users.service';
     RolesComponent,
     GroupListComponent,
     RoleListComponent,
+    EditGroupComponent,
+    EditGroupPageComponent,
   ],
   imports: [
     CommonModule,

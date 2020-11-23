@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="name"
+      type="text"
+      placeholder="Group Name"
+    />
+  </mat-form-field>
+  <div class="buttons">
+    <button
+      type="submit"
+      mat-flat-button
+      color="accent"
+      [disabled]="!form.valid"
+    >
+      Save
+    </button>
+    <button (click)="onCancel()" mat-button type="button">Cancel</button>
+  </div>
+</form>

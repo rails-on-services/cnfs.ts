@@ -3,9 +3,9 @@ import {
   ITableData,
   ITableService,
 } from '@cnfs/angular-table';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { IGroup } from '../models/group.model';
+import { IGroup, IGroupAttributes } from '../models/group.model';
 
 export class GroupsAdapter implements ITableService<IGroup> {
   public getTableData(
@@ -21,5 +21,20 @@ export class GroupsAdapter implements ITableService<IGroup> {
         record_count: 2,
       },
     }).pipe(delay(100));
+  }
+
+  public getOne(id: string): Observable<IGroup> {
+    return throwError('Method not implemented.');
+  }
+
+  public create(group: IGroupAttributes): Observable<IGroup> {
+    return throwError('Method not implemented.');
+  }
+
+  public update(
+    id: string,
+    group: Partial<IGroupAttributes>
+  ): Observable<IGroup> {
+    return throwError('Method not implemented.');
   }
 }

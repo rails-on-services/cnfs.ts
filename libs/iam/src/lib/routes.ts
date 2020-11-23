@@ -5,6 +5,7 @@ import { GroupsComponent } from './pages/groups/groups.component';
 import { IamComponent } from './pages/iam/iam.component';
 import { RolesComponent } from './pages/roles/roles.component';
 import { UsersComponent } from './pages/users/users.component';
+import { EditGroupPageComponent } from './pages/edit-group-page/edit-group-page.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,16 @@ export const routes: Routes = [
         component: GroupsComponent,
       },
       { path: 'roles', component: RolesComponent },
+      {
+        path: 'edit-group/:groupId',
+        component: EditGroupPageComponent,
+        pathMatch: 'prefix',
+      },
+      {
+        path: 'create-group',
+        component: EditGroupPageComponent,
+        pathMatch: 'prefix',
+      },
       { path: '', pathMatch: 'full', redirectTo: 'users' },
     ],
   },

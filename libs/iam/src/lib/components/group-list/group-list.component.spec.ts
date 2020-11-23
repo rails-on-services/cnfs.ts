@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
 import { groupsAdapterMock } from '../../mocks/groups.adapter';
 import { GroupsAdapter } from '../../services/groups.adapter';
@@ -19,6 +21,8 @@ describe('GroupListComponent', () => {
         MatTableModule,
         NoopAnimationsModule,
         MatSortModule,
+        MatIconModule,
+        RouterTestingModule,
       ],
       providers: [{ provide: GroupsAdapter, useValue: groupsAdapterMock }],
     }).compileComponents();
