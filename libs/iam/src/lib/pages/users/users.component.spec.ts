@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@cnfs/angular-table';
 import { UsersComponent } from './users.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({
   selector: 'cnfs-user-list',
@@ -32,6 +33,7 @@ describe('UsersComponent', () => {
         MatIconModule,
         TableModule,
         NoopAnimationsModule,
+        RouterTestingModule,
       ],
       providers: [],
     }).compileComponents();
