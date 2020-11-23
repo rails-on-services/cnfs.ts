@@ -19,7 +19,7 @@ import { GroupsAdapter } from '../../services/groups.adapter';
   styleUrls: ['./group-list.component.scss'],
 })
 export class GroupListComponent implements OnChanges, AfterViewInit {
-  @Input() public displayedColumns: string[] = ['name'];
+  @Input() public displayedColumns: string[] = ['name', 'actions'];
   @Input() public filter: FormGroup | undefined;
 
   @ViewChild(MatSort) public sort: MatSort;

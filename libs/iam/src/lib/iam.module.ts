@@ -26,6 +26,8 @@ import { GroupsAdapter } from './services/groups.adapter';
 import { RolesAdapter } from './services/roles.adapter';
 import { UsersAdapter } from './services/users.adapter';
 import { IUsersService } from './services/users.service';
+import { EditGroupComponent } from './components/edit-group/edit-group.component';
+import { EditGroupPageComponent } from './pages/edit-group-page/edit-group-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { IUsersService } from './services/users.service';
     RolesComponent,
     GroupListComponent,
     RoleListComponent,
+    EditGroupComponent,
+    EditGroupPageComponent,
   ],
   imports: [
     CommonModule,
