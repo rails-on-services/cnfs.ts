@@ -4,6 +4,7 @@
 </div>
 <div mat-dialog-actions *ngIf="data.noText || data.okText">
   <button
+    class="button"
     mat-flat-button
     (click)="onYesClick()"
     cdkFocusInitial
@@ -12,7 +13,7 @@
   >
     {{ data.okText }}
   </button>
-  <button mat-button (click)="onNoClick()" *ngIf="data.noText">
+  <button class="button" mat-button (click)="onNoClick()" *ngIf="data.noText">
     {{ data.noText }}
   </button>
 </div>
