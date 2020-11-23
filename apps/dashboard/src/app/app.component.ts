@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent, NotificationService, PopupData } from '@cnfs/common';
+import { ILink } from './ilink';
+import { links } from './routes';
 
 @Component({
   selector: 'cnfs-root',
@@ -9,9 +11,7 @@ import { DialogComponent, NotificationService, PopupData } from '@cnfs/common';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  public links: { label: string; route: string }[] = [
-    { label: 'IAM', route: 'iam' },
-  ];
+  public links: ILink[] = links;
 
   public constructor(
     private notificationService: NotificationService,
