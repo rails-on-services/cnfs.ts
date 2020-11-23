@@ -1,15 +1,14 @@
 import {
+  AfterViewInit,
   Component,
   Input,
   OnChanges,
   SimpleChanges,
   ViewChild,
-  AfterViewInit,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { CustomDataSource } from '@cnfs/angular-table';
-
 import { IGroup } from '../../models/group.model';
 import { GroupsAdapter } from '../../services/groups.adapter';
 
