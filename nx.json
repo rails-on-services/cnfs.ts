@@ -44,6 +44,9 @@
     },
     "common": {
       "tags": []
+    },
+    "cognito": {
+      "tags": []
     }
   }
 }

@@ -17,6 +17,7 @@
         [class.list-item-active]="routerLinkActiveInstance.isActive"
         *ngFor="let link of links"
       >
+        <mat-icon *ngIf="link.icon">{{ link.icon }}</mat-icon>
         {{ link.label }}
       </a>
     </mat-nav-list>

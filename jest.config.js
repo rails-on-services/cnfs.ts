@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/table',
     '<rootDir>/libs/iam',
     '<rootDir>/libs/common',
+    '<rootDir>/libs/cognito',
   ],
 };
