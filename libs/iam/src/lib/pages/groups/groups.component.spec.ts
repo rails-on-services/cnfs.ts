@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { GroupsComponent } from './groups.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'cnfs-group-list',
@@ -16,7 +19,7 @@ describe('GroupsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GroupsComponent, GroupListMockComponent],
-      imports: [],
+      imports: [RouterTestingModule, MatIconModule, MatButtonModule,],
       providers: [],
     }).compileComponents();
   });
