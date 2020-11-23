@@ -17,7 +17,9 @@ export class RolesAdapter implements ITableService<IRole> {
         { id: '1', name: 'Microsite' },
         { id: '2', name: 'POS' },
       ],
-      meta: {},
+      meta: {
+        record_count: 2,
+      },
     }).pipe(delay(100));
   }
 }
