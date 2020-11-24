@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
+import { TableModule } from '@cnfs/angular-table';
 import { CnfsCommonModule } from '@cnfs/common';
 import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
 import { CustomerListComponent } from './components/customer-list/customer-list.component';
@@ -13,6 +15,7 @@ import { EditPoolComponent } from './pages/edit-pool/edit-pool.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PoolsComponent } from './pages/pools/pools.component';
 import { routes } from './routes';
+import { CustomersAdapter } from './services/customers.adapter';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { routes } from './routes';
     RouterModule.forChild(routes),
     CnfsCommonModule,
     MatTabsModule,
+    MatTableModule,
+    TableModule,
   ],
+  providers: [CustomersAdapter],
 })
 export class CognitoModule {}

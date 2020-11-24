@@ -1,10 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NotificationService } from './notification.service';
-import { DialogComponent } from './dialog/dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ActionsComponent } from './actions/actions.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { NotificationService } from './notification.service';
 
 // make sure we have only one instance of the NotificationService
 export function notificationServiceFactory(): NotificationService {
@@ -20,12 +21,14 @@ export function notificationServiceFactory(): NotificationService {
   return window.notificationService;
 }
 
+const components = [DialogComponent, ComingSoonComponent, ActionsComponent];
+
 @NgModule({
   imports: [CommonModule, MatDialogModule, MatButtonModule],
   providers: [
     { provide: NotificationService, useFactory: notificationServiceFactory },
   ],
-  declarations: [DialogComponent, ComingSoonComponent],
-  exports: [DialogComponent, ComingSoonComponent],
+  declarations: [...components],
+  exports: [...components],
 })
 export class CnfsCommonModule {}

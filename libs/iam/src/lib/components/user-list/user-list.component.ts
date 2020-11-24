@@ -1,19 +1,18 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   SimpleChanges,
   ViewChild,
-  Output,
-  EventEmitter,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { CustomDataSource } from '@cnfs/angular-table';
 import { NotificationService } from '@cnfs/common';
-
-import { IUser, IUserAttributes } from '../../models/user.model';
+import { IUser } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
 @Component({

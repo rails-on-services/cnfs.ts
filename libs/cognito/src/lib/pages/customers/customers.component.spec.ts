@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CustomersComponent } from './customers.component';
+import { Component } from '@angular/core';
+
+@Component({ selector: 'cnfs-customer-list', template: '', styles: [] })
+class CustomerListMockComponent {}
 
 describe('CustomersComponent', () => {
   let component: CustomersComponent;
@@ -8,7 +12,7 @@ describe('CustomersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [CustomersComponent],
+      declarations: [CustomersComponent, CustomerListMockComponent],
     }).compileComponents();
   });
 
