@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ILink } from '@cnfs/common';
 
 @Component({
   selector: 'cnfs-iam',
@@ -6,9 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./iam.component.scss'],
 })
 export class IamComponent {
-  public links = [
-    { path: 'users', label: 'Users' },
-    { path: 'groups', label: 'Groups' },
-    { path: 'roles', label: 'Roles' },
+  public links: ILink[] = [
+    { route: 'users', label: 'Users' },
+    { route: 'groups', label: 'Groups' },
+    { route: 'roles', label: 'Roles' },
   ];
 }

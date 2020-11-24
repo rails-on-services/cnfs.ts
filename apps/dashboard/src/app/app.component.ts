@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { DialogComponent, NotificationService, PopupData } from '@cnfs/common';
-import { ILink } from './ilink';
+import {
+  DialogComponent,
+  NotificationService,
+  PopupData,
+  ILink,
+} from '@cnfs/common';
 import { links } from './routes';
 
 @Component({

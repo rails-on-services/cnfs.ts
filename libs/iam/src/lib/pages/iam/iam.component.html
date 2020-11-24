@@ -3,7 +3,7 @@
     mat-tab-link
     *ngFor="let link of links"
     (click)="activeLink = link"
-    [routerLink]="link.path"
+    [routerLink]="link.route"
     routerLinkActive
     #rla="routerLinkActive"
     [active]="rla.isActive"
