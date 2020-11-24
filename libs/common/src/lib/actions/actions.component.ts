@@ -13,6 +13,9 @@ export class ActionsComponent {
   @Output()
   private action: EventEmitter<string> = new EventEmitter();
 
+  @Input()
+  public maxVisibleActions: number = 2;
+
   public onClick(action: string): void {
     this.action.next(action);
   }

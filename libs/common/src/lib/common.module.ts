@@ -8,6 +8,7 @@ import { ActionsComponent } from './actions/actions.component';
 import { ComingSoonComponent } from './coming-soon/coming-soon.component';
 import { DialogComponent } from './dialog/dialog.component';
 import { NotificationService } from './notification.service';
+import { MatMenuModule } from '@angular/material/menu';
 
 // make sure we have only one instance of the NotificationService
 export function notificationServiceFactory(): NotificationService {
@@ -32,6 +33,7 @@ const components = [DialogComponent, ComingSoonComponent, ActionsComponent];
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
+    MatMenuModule,
   ],
   providers: [
     { provide: NotificationService, useFactory: notificationServiceFactory },
