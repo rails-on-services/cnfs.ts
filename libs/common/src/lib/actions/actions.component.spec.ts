@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ActionsComponent } from './actions.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('ActionsComponent', () => {
   let component: ActionsComponent;
@@ -11,7 +12,12 @@ describe('ActionsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ActionsComponent],
-      imports: [MatIconModule, MatTooltipModule, MatButtonModule],
+      imports: [
+        MatIconModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatMenuModule,
+      ],
     }).compileComponents();
   });
 
