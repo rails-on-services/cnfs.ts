@@ -1,7 +1,11 @@
-<h2 class="mat-title">{{ user.firstName }}</h2>
-<p class="mat-caption">Id: {{ user.id }}</p>
-<p class="mat-caption">Created On: {{ user.createdAt | date }}</p>
-<div class="buttons">
-  <a [routerLink]="['']" mat-flat-button color="accent"><mat-icon>edit</mat-icon>Edit</a>
-  <!-- <a [routerLink]="['']" mat-flat-button color="accent">Delete</a> -->
+<div class="user" *ngIf="user">
+  <h2 class="mat-title">{{ user.firstName }}</h2>
+  <p class="mat-caption">Id: {{ user.id }}</p>
+  <p class="mat-caption">Created On: {{ user.createdAt | date }}</p>
+  <div class="buttons">
+    <a [routerLink]="['']" mat-flat-button color="accent"
+      ><mat-icon>edit</mat-icon>Edit</a
+    >
+    <!-- <a [routerLink]="['']" mat-flat-button color="accent">Delete</a> -->
+  </div>
 </div>

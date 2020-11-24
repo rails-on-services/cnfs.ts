@@ -10,7 +10,8 @@ import { UsersAdapter } from '../../services/users.adapter';
   styleUrls: ['./user.component.scss'],
 })
 export class UserComponent {
-  public user: IUser;
+  public user: IUser | undefined;
+
   public constructor(
     private activatedRoute: ActivatedRoute,
     service: UsersAdapter
