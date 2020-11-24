@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTabsModule } from '@angular/material/tabs';
+import { RouterTestingModule } from '@angular/router/testing';
 import { CnfsCommonModule } from '@cnfs/common';
 import { HomeComponent } from './home.component';
 
@@ -9,7 +11,7 @@ describe('HomeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HomeComponent],
-      imports: [CnfsCommonModule],
+      imports: [CnfsCommonModule, MatTabsModule, RouterTestingModule],
     }).compileComponents();
   });
 

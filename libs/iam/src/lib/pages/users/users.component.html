@@ -12,8 +12,17 @@
       />
     </mat-form-field>
   </form>
-  <cnfs-user-list [filter]="filter" (userClicked)="userClicked($event)"></cnfs-user-list>
+  <cnfs-user-list
+    [filter]="filter"
+    (userClicked)="userClicked($event)"
+  ></cnfs-user-list>
 </div>
-<a mat-fab color="accent" [routerLink]="['..', 'create-user']" class="add-fab" aria-label="Create new user">
+<a
+  mat-fab
+  color="accent"
+  [routerLink]="['..', 'create-user']"
+  class="add-fab"
+  aria-label="Create new user"
+>
   <mat-icon>person_add</mat-icon>
 </a>

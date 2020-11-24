@@ -1,5 +1,5 @@
-import { Routes, Route } from '@angular/router';
-import { ILink } from './ilink';
+import { Routes } from '@angular/router';
+import { ILink, routes2Links } from '@cnfs/common';
 
 export const routes: Routes = [
   {
@@ -21,10 +21,4 @@ export const routes: Routes = [
   },
 ];
 
-export const links: ILink[] = routes
-  .filter((route: Route) => route.data?.label !== undefined)
-  .map((route: Route) => ({
-    label: route.data?.label || '',
-    route: route.path || '',
-    icon: route.data?.icon,
-  }));
+export const links: ILink[] = routes2Links(routes);
