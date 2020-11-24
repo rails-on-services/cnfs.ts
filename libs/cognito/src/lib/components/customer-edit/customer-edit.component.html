@@ -1,1 +1,13 @@
-<p>customer-edit works!</p>
+<form [formGroup]="form" (ngSubmit)="onSave()">
+  <div class="buttons">
+    <button
+      type="submit"
+      mat-flat-button
+      color="accent"
+      [disabled]="!form.valid"
+    >
+      Save
+    </button>
+    <button (click)="onCancel()" mat-button type="button">Cancel</button>
+  </div>
+</form>

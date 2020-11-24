@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule } from '@angular/router';
@@ -16,6 +17,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PoolsComponent } from './pages/pools/pools.component';
 import { routes } from './routes';
 import { CustomersAdapter } from './services/customers.adapter';
+import { PoolsAdapter } from './services/pools.adapter';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { CustomersAdapter } from './services/customers.adapter';
     MatTabsModule,
     MatTableModule,
     TableModule,
+    ReactiveFormsModule,
   ],
-  providers: [CustomersAdapter],
+  providers: [CustomersAdapter, PoolsAdapter],
 })
 export class CognitoModule {}

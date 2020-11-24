@@ -1,1 +1,3 @@
-export interface ICustomer {}
+export interface ICustomer {
+  name: string;
+}
