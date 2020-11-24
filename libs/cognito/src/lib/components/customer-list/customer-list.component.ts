@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { CustomersAdapter } from '../../services/customers.adapter';
-import { ICustomer } from '../../models/customer';
 import { CustomDataSource } from '@cnfs/angular-table';
+import { ICustomer } from '../../models/customer';
+import { CustomersAdapter } from '../../services/customers.adapter';
 
 @Component({
   selector: 'cnfs-customer-list',
