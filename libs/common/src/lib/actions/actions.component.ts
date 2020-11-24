@@ -1,12 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { IAction } from '../iaction';
 
 @Component({
   selector: 'cnfs-actions',
   templateUrl: './actions.component.html',
   styleUrls: ['./actions.component.scss'],
 })
-export class ActionsComponent implements OnInit {
-  constructor() {}
+export class ActionsComponent {
+  @Input()
+  public actions: IAction[] = [];
 
-  ngOnInit(): void {}
+  @Output()
+  private action: EventEmitter<string> = new EventEmitter();
+
+  public onClick(action: string): void {
+    this.action.next(action);
+  }
 }

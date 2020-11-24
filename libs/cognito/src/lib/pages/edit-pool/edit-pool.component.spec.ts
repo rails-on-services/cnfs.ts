@@ -1,14 +1,16 @@
+import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { EditPoolComponent } from './edit-pool.component';
 
+@Component({ selector: 'cnfs-pool-edit', template: '' })
+class PoolEditMockComponent {}
 describe('EditPoolComponent', () => {
   let component: EditPoolComponent;
   let fixture: ComponentFixture<EditPoolComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [EditPoolComponent],
+      declarations: [EditPoolComponent, PoolEditMockComponent],
     }).compileComponents();
   });
 

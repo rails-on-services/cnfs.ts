@@ -1,1 +1,9 @@
-<p>actions works!</p>
+<button
+  *ngFor="let action of actions"
+  mat-icon-button
+  [attr.aria-label]="action.label"
+  (click)="onClick(action.action)"
+  [matTooltip]="action.label"
+>
+  <mat-icon>{{ action.icon }}</mat-icon>
+</button>

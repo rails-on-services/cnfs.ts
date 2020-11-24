@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PoolsComponent } from './pools.component';
+import { Component } from '@angular/core';
+
+@Component({ selector: 'cnfs-pool-list', template: '' })
+class PoolListMockComponent {}
 
 describe('PoolsComponent', () => {
   let component: PoolsComponent;
@@ -8,7 +12,7 @@ describe('PoolsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PoolsComponent],
+      declarations: [PoolsComponent, PoolListMockComponent],
     }).compileComponents();
   });
 
