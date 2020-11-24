@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TableModule } from '@cnfs/angular-table';
 import { CnfsCommonModule } from '@cnfs/common';
 import { customersAdapterMock } from '../../mocks/customers.adapter';
@@ -14,7 +15,13 @@ describe('CustomerListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [CustomerListComponent],
-      imports: [MatTableModule, TableModule, CnfsCommonModule, MatSortModule],
+      imports: [
+        MatTableModule,
+        TableModule,
+        CnfsCommonModule,
+        MatSortModule,
+        NoopAnimationsModule,
+      ],
       providers: [
         { provide: CustomersAdapter, useValue: customersAdapterMock },
       ],

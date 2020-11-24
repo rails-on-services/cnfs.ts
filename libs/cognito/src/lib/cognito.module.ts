@@ -18,6 +18,7 @@ import { PoolsComponent } from './pages/pools/pools.component';
 import { routes } from './routes';
 import { CustomersAdapter } from './services/customers.adapter';
 import { PoolsAdapter } from './services/pools.adapter';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PoolsAdapter } from './services/pools.adapter';
     CnfsCommonModule,
     MatTabsModule,
     MatTableModule,
+    MatButtonModule,
     TableModule,
     ReactiveFormsModule,
   ],

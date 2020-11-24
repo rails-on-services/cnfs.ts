@@ -13,7 +13,7 @@ export const routes: Routes = [
     children: [
       { path: 'customers', component: CustomersComponent, pathMatch: 'prefix' },
       {
-        path: 'customer-edit',
+        path: 'customer-edit/:customerId',
         component: EditCustomerComponent,
         pathMatch: 'prefix',
       },

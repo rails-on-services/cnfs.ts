@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CustomDataSource } from '@cnfs/angular-table';
+import { IAction } from '@cnfs/common';
 import { ICustomer } from '../../models/customer';
 import { CustomersAdapter } from '../../services/customers.adapter';
-import { IAction } from '@cnfs/common';
 
 @Component({
   selector: 'cnfs-customer-list',
@@ -20,11 +20,17 @@ export class CustomerListComponent {
     { icon: 'edit', label: 'Edit Customer', action: 'edit' },
   ];
 
+  @Output()
+  public action: EventEmitter<{
+    customer: ICustomer;
+    action: string;
+  }> = new EventEmitter();
+
   public constructor(customersAdapter: CustomersAdapter) {
     this.dataSource = new CustomDataSource(customersAdapter);
   }
 
   public onAction(action: string, customer: ICustomer): void {
-    console.log(action, customer);
+    this.action.next({ action, customer });
   }
 }
