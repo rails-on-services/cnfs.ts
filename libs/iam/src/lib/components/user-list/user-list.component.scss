@@ -1,1 +1,6 @@
 @import '../list.scss';
+
+tr:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
+}

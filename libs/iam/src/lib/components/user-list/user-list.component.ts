@@ -5,13 +5,15 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
+  Output,
+  EventEmitter,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { CustomDataSource } from '@cnfs/angular-table';
 import { NotificationService } from '@cnfs/common';
 
-import { IUser } from '../../models/user.model';
+import { IUser, IUserAttributes } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
 @Component({
@@ -28,6 +30,9 @@ export class UserListComponent implements AfterViewInit, OnChanges {
   @Input() public filter: FormGroup | undefined;
 
   @ViewChild(MatSort) public sort: MatSort;
+
+  @Output()
+  private userClicked: EventEmitter<IUser> = new EventEmitter();
 
   public dataSource: CustomDataSource<IUser>;
 
@@ -63,5 +68,9 @@ export class UserListComponent implements AfterViewInit, OnChanges {
         }
       },
     });
+  }
+
+  public onClick(user: IUser): void {
+    this.userClicked.next(user);
   }
 }
