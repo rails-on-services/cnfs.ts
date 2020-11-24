@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ILink } from '@cnfs/common';
 
 @Component({
   selector: 'cnfs-home',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  // public
+  public links: ILink[] = [
+    { label: 'Customers', route: 'customers' },
+    { label: 'Pools', route: 'pools' },
+  ];
 }
