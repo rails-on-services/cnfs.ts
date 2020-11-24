@@ -5,9 +5,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
 import { UsersComponent } from './users.component';
-import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({
   selector: 'cnfs-user-list',
