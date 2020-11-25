@@ -17,20 +17,22 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
+import { MockGroupsService } from './mocks/mock.groups.service';
+import { MockRolesService } from './mocks/mock.roles.service';
 import { MockUsersService } from './mocks/mock.users.service';
 import { EditGroupPageComponent } from './pages/edit-group-page/edit-group-page.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { IamComponent } from './pages/iam/iam.component';
 import { RolesComponent } from './pages/roles/roles.component';
+import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { routes } from './routes';
 import { GroupsAdapter } from './services/groups.adapter';
+import { IGroupsService } from './services/groups.service';
 import { RolesAdapter } from './services/roles.adapter';
+import { IRolesService } from './services/roles.service';
 import { UsersAdapter } from './services/users.adapter';
 import { IUsersService } from './services/users.service';
-import { UserComponent } from './pages/user/user.component';
-import { IGroupsService } from './services/groups.service';
-import { MockGroupsService } from './mocks/mock.groups.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,7 @@ import { MockGroupsService } from './mocks/mock.groups.service';
   providers: [
     { provide: IUsersService, useClass: MockUsersService },
     { provide: IGroupsService, useClass: MockGroupsService },
+    { provide: IRolesService, useClass: MockRolesService },
     UsersAdapter,
     GroupsAdapter,
     RolesAdapter,
