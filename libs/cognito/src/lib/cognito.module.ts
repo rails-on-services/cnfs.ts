@@ -21,6 +21,8 @@ import { routes } from './routes';
 import { CustomersAdapter } from './services/customers.adapter';
 import { ICustomersService } from './services/icustomers.service';
 import { PoolsAdapter } from './services/pools.adapter';
+import { IPoolsService } from './services/ipools.service';
+import { PoolsService } from './mocks/pools.service';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { PoolsAdapter } from './services/pools.adapter';
     CustomersAdapter,
     PoolsAdapter,
     { provide: ICustomersService, useClass: CustomersService },
+    { provide: IPoolsService, useClass: PoolsService },
   ],
 })
 export class CognitoModule {}

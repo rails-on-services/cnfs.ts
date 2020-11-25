@@ -1,4 +1,5 @@
-export interface PoolDto {
-  id: string;
+export type PoolDto = PoolAttributesDto;
+
+export interface PoolAttributesDto {
   name: string;
 }

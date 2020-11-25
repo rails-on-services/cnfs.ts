@@ -1,18 +1,40 @@
-import { ITableData, ITableService } from '@cnfs/angular-table';
-import { HttpParamsOptions } from '@cnfs/json-api';
-import { Observable, of } from 'rxjs';
-import { IPool } from '../models/pool';
+import { Injectable } from '@angular/core';
+import { GenericAdapter, ITableService } from '@cnfs/angular-table';
+import { IJSonApiResourceObjects } from '@cnfs/json-api';
+import { IPool, IPoolAttributes } from '../models/pool';
+import { PoolAttributesDto, PoolDto } from '../models/pool.dto';
+import { IPoolsService } from '../services/ipools.service';
 
-export class PoolsAdapter implements ITableService<IPool> {
-  public getTableData(
-    params: HttpParamsOptions
-  ): Observable<ITableData<IPool>> {
-    return of({
-      data: [
-        { id: '1', name: 'Gold' },
-        { id: '2', name: 'Silver' },
-      ],
-      meta: { record_count: 2 },
-    });
+function fromDto(dto: IJSonApiResourceObjects<PoolDto>): IPool {
+  if (dto.attributes === undefined) {
+    throw new Error('missing attributes on user resource');
+  }
+  return {
+    id: dto.id,
+    name: dto.attributes.name,
+  };
+}
+
+function toDtoAttributes(item: IPoolAttributes): PoolAttributesDto {
+  return { name: item.name };
+}
+
+function toDtoPartialAttributes(
+  item: Partial<IPoolAttributes>
+): Partial<PoolAttributesDto> {
+  return { name: item.name };
+}
+
+@Injectable()
+export class PoolsAdapter
+  extends GenericAdapter<
+    IPool,
+    IPoolAttributes,
+    PoolDto,
+    PoolAttributesDto
+  >
+  implements ITableService<IPool> {
+  public constructor(service: IPoolsService) {
+    super(service, toDtoAttributes, toDtoPartialAttributes, fromDto);
   }
 }
