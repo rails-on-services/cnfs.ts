@@ -1,40 +1,30 @@
-import {
-  HttpParamsOptions,
-  ITableData,
-  ITableService,
-} from '@cnfs/angular-table';
-import { Observable, of, throwError } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { ITableService } from '@cnfs/angular-table';
+import { IJSonApiResourceObjects } from '@cnfs/json-api';
+import { GroupAttributesDto, GroupDto } from '../models/group.dto';
 import { IGroup, IGroupAttributes } from '../models/group.model';
+import { GenericAdapter } from './generic.adapter';
+import { IGroupsService } from './groups.service';
+import { Injectable } from '@angular/core';
 
-export class GroupsAdapter implements ITableService<IGroup> {
-  public getTableData(
-    params: HttpParamsOptions
-  ): Observable<ITableData<IGroup>> {
-    //mock-data
-    return of({
-      data: [
-        { id: '1', name: 'Admin' },
-        { id: '2', name: 'Finance' },
-      ],
-      meta: {
-        record_count: 2,
-      },
-    }).pipe(delay(100));
-  }
+function toDtoAttributes(item: IGroupAttributes): GroupAttributesDto {
+  return { ...item };
+}
 
-  public getOne(id: string): Observable<IGroup> {
-    return throwError('Method not implemented.');
-  }
+function toDtoPartialAttributes(
+  item: Partial<IGroupAttributes>
+): Partial<GroupAttributesDto> {
+  return { ...item };
+}
 
-  public create(group: IGroupAttributes): Observable<IGroup> {
-    return throwError('Method not implemented.');
-  }
+function fromDto(item: IJSonApiResourceObjects<GroupDto>): IGroup {
+  return { id: item.id, name: item.attributes?.name || '' };
+}
 
-  public update(
-    id: string,
-    group: Partial<IGroupAttributes>
-  ): Observable<IGroup> {
-    return throwError('Method not implemented.');
+@Injectable()
+export class GroupsAdapter
+  extends GenericAdapter<IGroup, IGroupAttributes, GroupDto, GroupAttributesDto>
+  implements ITableService<IGroup> {
+  public constructor(service: IGroupsService) {
+    super(service, toDtoAttributes, toDtoPartialAttributes, fromDto);
   }
 }
