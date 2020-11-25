@@ -6,7 +6,7 @@
     <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
   </ng-container>
   <ng-container matColumnDef="createdAt">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header="createdAt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header="created">
       Created
     </th>
     <td mat-cell *matCellDef="let user">{{ user.createdAt | date }}</td>

@@ -1,8 +1,7 @@
-import { IJsonApiResourceCollectionPayload } from '@cnfs/json-api';
-
+import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { UserDto } from '../models/user.dto';
 
-const data = [
+export const mockUsers: IJSonApiResourceObjects<UserDto>[] = [
   {
     type: 'user',
     id: '1',
@@ -112,11 +111,3 @@ const data = [
     },
   },
 ];
-export const sample: IJsonApiResourceCollectionPayload<UserDto> = {
-  data,
-  errors: [],
-  included: [],
-  meta: {
-    record_count: data.length,
-  },
-};
