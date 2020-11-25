@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ITableService } from '@cnfs/angular-table';
+import { GenericAdapter, ITableService } from '@cnfs/angular-table';
 import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { RoleAttributesDto, RoleDto } from '../models/role.dto';
 import { IRole, IRoleAttributes } from '../models/role.model';
-import { GenericAdapter } from './generic.adapter';
-import { IRolesService } from './roles.service';
+import { IRolesService } from './iroles.service';
 
 function fromDto(dto: IJSonApiResourceObjects<RoleDto>): IRole {
   if (dto.attributes === undefined) {

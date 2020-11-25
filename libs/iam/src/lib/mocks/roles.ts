@@ -1,7 +1,7 @@
 import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { RoleDto } from '../models/role.dto';
 
-export const mockRoles: IJSonApiResourceObjects<RoleDto>[] = [
+export const roles: IJSonApiResourceObjects<RoleDto>[] = [
   {
     type: 'role',
     id: '1',

@@ -1,7 +1,7 @@
 import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { UserDto } from '../models/user.dto';
 
-export const mockUsers: IJSonApiResourceObjects<UserDto>[] = [
+export const users: IJSonApiResourceObjects<UserDto>[] = [
   {
     type: 'user',
     id: '1',

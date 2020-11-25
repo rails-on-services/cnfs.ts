@@ -1,8 +1,5 @@
-import {
-  HttpParamsOptions,
-  ITableData,
-  ITableService,
-} from '@cnfs/angular-table';
+import { ITableData, ITableService } from '@cnfs/angular-table';
+import { HttpParamsOptions } from '@cnfs/json-api';
 import { Observable, of } from 'rxjs';
 import { IPool } from '../models/pool';
 

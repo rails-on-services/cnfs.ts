@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ITableService } from '@cnfs/angular-table';
+import { GenericAdapter, ITableService } from '@cnfs/angular-table';
 import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { UserAttributesDto, UserDto } from '../models/user.dto';
 import { IUser, IUserAttributes } from '../models/user.model';
-import { GenericAdapter } from './generic.adapter';
-import { IUsersService } from './users.service';
+import { IUsersService } from './iusers.service';
 
 function fromDto(dto: IJSonApiResourceObjects<UserDto>): IUser {
   if (dto.attributes === undefined) {

@@ -1,7 +1,7 @@
 import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { GroupDto } from '../models/group.dto';
 
-export const mockGroups: IJSonApiResourceObjects<GroupDto>[] = [
+export const groups: IJSonApiResourceObjects<GroupDto>[] = [
   {
     type: 'group',
     id: '1',

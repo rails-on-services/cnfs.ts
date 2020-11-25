@@ -1,5 +1,5 @@
-import { HttpParamsOptions } from '@cnfs/angular-table';
 import {
+  HttpParamsOptions,
   IJsonApiResourceCollectionPayload,
   IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
