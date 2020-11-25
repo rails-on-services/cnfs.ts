@@ -29,6 +29,8 @@ import { RolesAdapter } from './services/roles.adapter';
 import { UsersAdapter } from './services/users.adapter';
 import { IUsersService } from './services/users.service';
 import { UserComponent } from './pages/user/user.component';
+import { IGroupsService } from './services/groups.service';
+import { MockGroupsService } from './mocks/mock.groups.service';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { UserComponent } from './pages/user/user.component';
   ],
   providers: [
     { provide: IUsersService, useClass: MockUsersService },
+    { provide: IGroupsService, useClass: MockGroupsService },
     UsersAdapter,
     GroupsAdapter,
     RolesAdapter,

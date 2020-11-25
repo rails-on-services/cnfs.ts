@@ -5,18 +5,22 @@ import {
 } from '@cnfs/json-api';
 import { Observable } from 'rxjs';
 
-export interface ICRUDService<DTO, DTO_ATTRIBUTES> {
-  getList(
+export abstract class ICRUDService<DTO, DTO_ATTRIBUTES> {
+  public abstract getList(
     params: HttpParamsOptions
   ): Observable<IJsonApiResourceCollectionPayload<DTO>>;
 
-  getOne(id: string): Observable<IJsonApiSingleResourcePayload<DTO>>;
+  public abstract getOne(
+    id: string
+  ): Observable<IJsonApiSingleResourcePayload<DTO>>;
 
-  delete(id: string): Observable<void>;
+  public abstract delete(id: string): Observable<void>;
 
-  post(item: DTO_ATTRIBUTES): Observable<IJsonApiSingleResourcePayload<DTO>>;
+  public abstract post(
+    item: DTO_ATTRIBUTES
+  ): Observable<IJsonApiSingleResourcePayload<DTO>>;
 
-  patch(
+  public abstract patch(
     id: string,
     item: Partial<DTO_ATTRIBUTES>
   ): Observable<IJsonApiSingleResourcePayload<DTO>>;
