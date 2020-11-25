@@ -20,4 +20,22 @@ export const mockGroups: IJSonApiResourceObjects<GroupDto>[] = [
       updated: '2015-04-21T14:56:28.000Z',
     },
   },
+  {
+    type: 'group',
+    id: '3',
+    attributes: {
+      name: 'Customer success',
+      created: '2015-04-21T14:56:29.000Z',
+      updated: '2015-04-21T14:56:28.000Z',
+    },
+  },
+  {
+    type: 'group',
+    id: '3',
+    attributes: {
+      name: 'Customer support',
+      created: '2015-04-21T14:56:29.000Z',
+      updated: '2015-04-21T14:56:28.000Z',
+    },
+  },
 ];
