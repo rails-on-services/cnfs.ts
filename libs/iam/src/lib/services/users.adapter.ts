@@ -12,7 +12,7 @@ import {
   IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
 
-import { UserDto } from '../models/user.dto';
+import { UserDto, UserAttributesDto } from '../models/user.dto';
 import { IUser, IUserAttributes } from '../models/user.model';
 import { IUsersService } from './users.service';
 
@@ -50,15 +50,29 @@ export class UsersAdapter implements ITableService<IUser> {
   }
 
   public create(user: IUserAttributes): Observable<IUser> {
-    return throwError('not implemented yet');
+    return this.service.post(this.toDtoAttributes(user)).pipe(
+      map((item) => {
+        if (item.data === null) {
+          throw new Error('created item is null');
+        }
+        return this.fromDto(item.data);
+      })
+    );
   }
 
   public update(id: string, user: Partial<IUserAttributes>): Observable<IUser> {
-    return throwError('not implemented');
+    return this.service.patch(id, this.toDtoPartialAttributes(user)).pipe(
+      map((item) => {
+        if (item.data === null) {
+          throw new Error('created item is null');
+        }
+        return this.fromDto(item.data);
+      })
+    );
   }
 
   public delete(id: string): Observable<void> {
-    return throwError('not implemented');
+    return this.service.delete(id);
   }
 
   private fromDto(dto: IJSonApiResourceObjects<UserDto>): IUser {
@@ -70,5 +84,15 @@ export class UsersAdapter implements ITableService<IUser> {
       firstName: dto.attributes.firstName,
       createdAt: new Date(dto.attributes.created),
     };
+  }
+
+  private toDtoAttributes(item: IUserAttributes): UserAttributesDto {
+    return { firstName: item.firstName };
+  }
+
+  private toDtoPartialAttributes(
+    item: Partial<IUserAttributes>
+  ): Partial<UserAttributesDto> {
+    return { firstName: item.firstName };
   }
 }
