@@ -1,4 +1,12 @@
 <form [formGroup]="form" (ngSubmit)="onSave()">
+  <mat-form-field>
+    <input
+      matInput
+      type="text"
+      formControlName="name"
+      placeholder="Pool Name"
+    />
+  </mat-form-field>
   <div class="buttons">
     <button
       type="submit"

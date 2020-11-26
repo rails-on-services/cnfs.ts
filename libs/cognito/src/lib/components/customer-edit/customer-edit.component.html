@@ -1,4 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="onSave()">
+  <mat-form-field>
+    <input
+      formControlName="name"
+      matInput
+      type="text"
+      autocomplete="name"
+      placeholder="Name"
+    />
+  </mat-form-field>
   <div class="buttons">
     <button
       type="submit"

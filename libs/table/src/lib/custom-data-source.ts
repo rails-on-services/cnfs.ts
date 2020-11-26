@@ -1,11 +1,11 @@
 import { DataSource } from '@angular/cdk/collections';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
+import { HttpParamsOptions } from '@cnfs/json-api';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { ITableData } from './data-list.interface';
-import { HttpParamsOptions } from './params-map';
-import { ITableService } from './table-service-interface';
-import { PageEvent } from '@angular/material/paginator';
+import { ITableService } from './itable.service';
 
 // enum of states for manage view in pages where used data source
 export enum DataSourceStates {

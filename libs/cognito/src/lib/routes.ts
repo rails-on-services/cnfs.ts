@@ -17,8 +17,23 @@ export const routes: Routes = [
         component: EditCustomerComponent,
         pathMatch: 'prefix',
       },
-      { path: 'pool-edit', component: EditPoolComponent, pathMatch: 'prefix' },
+      {
+        path: 'customer-create',
+        component: EditCustomerComponent,
+        pathMatch: 'prefix',
+      },
+      {
+        path: 'pool-edit/:poolId',
+        component: EditPoolComponent,
+        pathMatch: 'prefix',
+      },
+      {
+        path: 'pool-create',
+        component: EditPoolComponent,
+        pathMatch: 'prefix',
+      },
       { path: 'pools', component: PoolsComponent, pathMatch: 'prefix' },
+      { path: '', pathMatch: 'full', redirectTo: 'customers' },
     ],
   },
 ];

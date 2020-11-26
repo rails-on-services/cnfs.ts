@@ -17,9 +17,9 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { RoleListComponent } from './components/role-list/role-list.component';
 import { UserListComponent } from './components/user-list/user-list.component';
-import { MockGroupsService } from './mocks/mock.groups.service';
-import { MockRolesService } from './mocks/mock.roles.service';
-import { MockUsersService } from './mocks/mock.users.service';
+import { GroupsService } from './mocks/groups.service';
+import { RolesService } from './mocks/roles.service';
+import { UsersService } from './mocks/users.service';
 import { EditGroupPageComponent } from './pages/edit-group-page/edit-group-page.component';
 import { GroupsComponent } from './pages/groups/groups.component';
 import { IamComponent } from './pages/iam/iam.component';
@@ -28,11 +28,11 @@ import { UserComponent } from './pages/user/user.component';
 import { UsersComponent } from './pages/users/users.component';
 import { routes } from './routes';
 import { GroupsAdapter } from './services/groups.adapter';
-import { IGroupsService } from './services/groups.service';
+import { IGroupsService } from './services/igroups.service';
+import { IRolesService } from './services/iroles.service';
+import { IUsersService } from './services/iusers.service';
 import { RolesAdapter } from './services/roles.adapter';
-import { IRolesService } from './services/roles.service';
 import { UsersAdapter } from './services/users.adapter';
-import { IUsersService } from './services/users.service';
 
 @NgModule({
   declarations: [
@@ -65,9 +65,9 @@ import { IUsersService } from './services/users.service';
     RouterModule.forChild(routes),
   ],
   providers: [
-    { provide: IUsersService, useClass: MockUsersService },
-    { provide: IGroupsService, useClass: MockGroupsService },
-    { provide: IRolesService, useClass: MockRolesService },
+    { provide: IUsersService, useClass: UsersService },
+    { provide: IGroupsService, useClass: GroupsService },
+    { provide: IRolesService, useClass: RolesService },
     UsersAdapter,
     GroupsAdapter,
     RolesAdapter,

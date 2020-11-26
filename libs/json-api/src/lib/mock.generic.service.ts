@@ -1,12 +1,12 @@
-import { HttpParamsOptions } from '@cnfs/angular-table';
+import { HttpParamsOptions } from '@cnfs/json-api';
 import { Observable, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { v4 as uuidv4 } from 'uuid';
 import { ICRUDService } from './icrud.service';
 import {
   IJsonApiResourceCollectionPayload,
-  IJsonApiSingleResourcePayload,
   IJSonApiResourceObjects,
+  IJsonApiSingleResourcePayload,
 } from './IJsonApiPayload';
 
 export class MockGenericService<DTO, DTO_ATTRIBUTES>
@@ -98,7 +98,7 @@ export class MockGenericService<DTO, DTO_ATTRIBUTES>
       this.data = [...this.data.slice(0, index), ...this.data.slice(index + 1)];
     }
 
-    return of();
+    return of(void 0);
   }
 
   public post(

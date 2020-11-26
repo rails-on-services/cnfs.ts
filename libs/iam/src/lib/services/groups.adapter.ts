@@ -1,10 +1,9 @@
-import { ITableService } from '@cnfs/angular-table';
+import { Injectable } from '@angular/core';
+import { GenericAdapter, ITableService } from '@cnfs/angular-table';
 import { IJSonApiResourceObjects } from '@cnfs/json-api';
 import { GroupAttributesDto, GroupDto } from '../models/group.dto';
 import { IGroup, IGroupAttributes } from '../models/group.model';
-import { GenericAdapter } from './generic.adapter';
-import { IGroupsService } from './groups.service';
-import { Injectable } from '@angular/core';
+import { IGroupsService } from './igroups.service';
 
 function toDtoAttributes(item: IGroupAttributes): GroupAttributesDto {
   return { ...item };

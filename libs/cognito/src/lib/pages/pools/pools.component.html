@@ -1,1 +1,12 @@
-<cnfs-pool-list></cnfs-pool-list>
+<div class="scroll-body">
+  <cnfs-pool-list></cnfs-pool-list>
+</div>
+<a
+  mat-fab
+  color="accent"
+  [routerLink]="['..', 'pool-create']"
+  class="add-fab"
+  aria-label="Create new group"
+>
+  <mat-icon>group_add</mat-icon>
+</a>

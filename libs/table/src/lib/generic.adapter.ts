@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
   HttpParamsOptions,
-  ITableData,
-  ITableService,
-} from '@cnfs/angular-table';
-import {
   ICRUDService,
   IJSonApiResourceObjects,
   IJsonApiSingleResourcePayload,
 } from '@cnfs/json-api';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ITableData } from './data-list.interface';
+import { ITableService } from './itable.service';
 
 @Injectable()
 export class GenericAdapter<ITEM, ITEM_ATTRIBUTES, DTO, DTO_ATTRIBUTES>
