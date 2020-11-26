@@ -3,6 +3,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { customersAdapterMock } from '../../mocks/customers.adapter';
+import { CustomersAdapter } from '../../services/customers.adapter';
 import { CustomerEditComponent } from './customer-edit.component';
 
 describe('CustomerEditComponent', () => {
@@ -17,6 +19,9 @@ describe('CustomerEditComponent', () => {
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
+      ],
+      providers: [
+        { provide: CustomersAdapter, useValue: customersAdapterMock },
       ],
     }).compileComponents();
   });

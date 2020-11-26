@@ -3,6 +3,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { poolsAdapterMock } from '../../mocks/pools.adapter';
+import { PoolsAdapter } from '../../services/pools.adapter';
 import { PoolEditComponent } from './pool-edit.component';
 
 describe('PoolEditComponent', () => {
@@ -18,6 +20,7 @@ describe('PoolEditComponent', () => {
         MatFormFieldModule,
         MatButtonModule,
       ],
+      providers: [{ provide: PoolsAdapter, useValue: poolsAdapterMock }],
     }).compileComponents();
   });
 

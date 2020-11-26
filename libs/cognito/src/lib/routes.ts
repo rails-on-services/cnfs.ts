@@ -33,6 +33,7 @@ export const routes: Routes = [
         pathMatch: 'prefix',
       },
       { path: 'pools', component: PoolsComponent, pathMatch: 'prefix' },
+      { path: '', pathMatch: 'full', redirectTo: 'customers' },
     ],
   },
 ];
