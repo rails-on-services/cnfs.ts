@@ -10,11 +10,16 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CustomDataSource } from '@cnfs/angular-table';
 import { IAction, NotificationService } from '@cnfs/common';
 import { IUser } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
+const enum ACTIONS {
+  edit = 'edit',
+  delete = 'delete',
+}
 @Component({
   selector: 'cnfs-user-list',
   templateUrl: './user-list.component.html',
@@ -29,8 +34,8 @@ export class UserListComponent implements AfterViewInit, OnChanges {
   @Input() public filter: FormGroup | undefined;
 
   @Input() public actions: IAction[] = [
-    { label: 'Edit user', icon: 'edit', action: 'edit' },
-    { label: 'Delete user', icon: 'delete', action: 'delete' },
+    { label: 'Edit user', icon: 'edit', action: ACTIONS.edit },
+    { label: 'Delete user', icon: 'delete', action: ACTIONS.delete },
   ];
 
   @Output()
@@ -42,7 +47,9 @@ export class UserListComponent implements AfterViewInit, OnChanges {
 
   public constructor(
     private usersAdapter: UsersAdapter,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.dataSource = new CustomDataSource(usersAdapter);
   }
@@ -66,7 +73,10 @@ export class UserListComponent implements AfterViewInit, OnChanges {
       callback: (res) => {
         if (res) {
           this.usersAdapter.delete(user.id).subscribe(
-            () => this.notificationService.addSnack('User deleted'),
+            () => {
+              this.notificationService.addSnack('User deleted');
+              this.dataSource.refresh();
+            },
             () => this.notificationService.addSnack('User deletion failed')
           );
         }
@@ -75,8 +85,11 @@ export class UserListComponent implements AfterViewInit, OnChanges {
   }
 
   public onAction(action: string, user: IUser): void {
-    console.log(action, user); //TODO
-    if (action === 'delete') {
+    if (action === ACTIONS.edit) {
+      this.router.navigate(['..', 'edit-user', user.id], {
+        relativeTo: this.activatedRoute,
+      });
+    } else if (action === ACTIONS.delete) {
       this.onDelete(user);
     }
   }

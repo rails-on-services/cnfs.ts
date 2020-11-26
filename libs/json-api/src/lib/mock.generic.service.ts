@@ -98,7 +98,7 @@ export class MockGenericService<DTO, DTO_ATTRIBUTES>
       this.data = [...this.data.slice(0, index), ...this.data.slice(index + 1)];
     }
 
-    return of();
+    return of(void 0);
   }
 
   public post(
