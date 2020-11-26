@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationService, notificationServiceMock } from '@cnfs/common';
 import { customersAdapterMock } from '../../mocks/customers.adapter';
 import { CustomersAdapter } from '../../services/customers.adapter';
@@ -20,6 +21,7 @@ describe('CustomerEditComponent', () => {
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
+        NoopAnimationsModule,
       ],
       providers: [
         { provide: CustomersAdapter, useValue: customersAdapterMock },

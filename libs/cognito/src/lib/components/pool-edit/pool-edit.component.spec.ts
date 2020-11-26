@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationService, notificationServiceMock } from '@cnfs/common';
 import { poolsAdapterMock } from '../../mocks/pools.adapter';
 import { PoolsAdapter } from '../../services/pools.adapter';
@@ -20,6 +21,7 @@ describe('PoolEditComponent', () => {
         MatInputModule,
         MatFormFieldModule,
         MatButtonModule,
+        NoopAnimationsModule,
       ],
       providers: [
         { provide: PoolsAdapter, useValue: poolsAdapterMock },
