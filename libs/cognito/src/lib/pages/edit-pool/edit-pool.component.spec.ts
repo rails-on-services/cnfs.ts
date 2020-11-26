@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IPool } from '../../models/pool';
 import { EditPoolComponent } from './edit-pool.component';
 
 @Component({ selector: 'cnfs-pool-edit', template: '' })
-class PoolEditMockComponent {}
+class PoolEditMockComponent {
+  @Input() private pool: IPool;
+}
 describe('EditPoolComponent', () => {
   let component: EditPoolComponent;
   let fixture: ComponentFixture<EditPoolComponent>;

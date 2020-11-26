@@ -1,7 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PoolsComponent } from './pools.component';
 import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PoolsComponent } from './pools.component';
 
 @Component({ selector: 'cnfs-pool-list', template: '' })
 class PoolListMockComponent {}
@@ -13,6 +14,7 @@ describe('PoolsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [PoolsComponent, PoolListMockComponent],
+      imports: [RouterTestingModule, MatIconModule],
     }).compileComponents();
   });
 

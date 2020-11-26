@@ -8,7 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TableModule } from '@cnfs/angular-table';
-import { NotificationService } from '@cnfs/common';
+import { CnfsCommonModule, NotificationService } from '@cnfs/common';
 import { notificationServiceMock } from '../../mocks/notification.service';
 import { usersAdapterMock } from '../../mocks/users.adapter';
 import { UsersAdapter } from '../../services/users.adapter';
@@ -30,6 +30,7 @@ describe('UserListComponent', () => {
         MatSortModule,
         TableModule,
         RouterTestingModule,
+        CnfsCommonModule,
         NoopAnimationsModule,
       ],
       providers: [
