@@ -35,7 +35,7 @@ export class UserListComponent implements AfterViewInit, OnChanges {
 
   @Input() public actions: IAction[] = [
     { label: 'Edit user', icon: 'edit', action: ACTIONS.edit },
-    { label: 'Delete user', icon: 'delete', action: ACTIONS.delete },
+    { label: 'Delete user', icon: 'person_remove', action: ACTIONS.delete },
   ];
 
   @Output()

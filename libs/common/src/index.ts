@@ -6,3 +6,4 @@ export * from './lib/ilink';
 export * from './lib/routes2links.function';
 export * from './lib/iaction';
 export * from './lib/actions/actions.component';
+export * from './lib/notification.service.mock';
