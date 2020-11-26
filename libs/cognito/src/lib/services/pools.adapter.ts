@@ -27,12 +27,7 @@ function toDtoPartialAttributes(
 
 @Injectable()
 export class PoolsAdapter
-  extends GenericAdapter<
-    IPool,
-    IPoolAttributes,
-    PoolDto,
-    PoolAttributesDto
-  >
+  extends GenericAdapter<IPool, IPoolAttributes, PoolDto, PoolAttributesDto>
   implements ITableService<IPool> {
   public constructor(service: IPoolsService) {
     super(service, toDtoAttributes, toDtoPartialAttributes, fromDto);

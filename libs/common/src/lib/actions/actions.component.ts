@@ -16,7 +16,9 @@ export class ActionsComponent {
   @Input()
   public maxVisibleActions: number = 2;
 
-  public onClick(action: string): void {
+  public onClick(event: MouseEvent, action: string): void {
+    event.stopPropagation();
+    event.preventDefault();
     this.action.next(action);
   }
 }

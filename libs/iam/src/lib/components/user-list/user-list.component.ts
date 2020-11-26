@@ -11,7 +11,7 @@ import {
 import { FormGroup } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { CustomDataSource } from '@cnfs/angular-table';
-import { NotificationService } from '@cnfs/common';
+import { IAction, NotificationService } from '@cnfs/common';
 import { IUser } from '../../models/user.model';
 import { UsersAdapter } from '../../services/users.adapter';
 
@@ -28,10 +28,15 @@ export class UserListComponent implements AfterViewInit, OnChanges {
   ];
   @Input() public filter: FormGroup | undefined;
 
-  @ViewChild(MatSort) public sort: MatSort;
+  @Input() public actions: IAction[] = [
+    { label: 'Edit user', icon: 'edit', action: 'edit' },
+    { label: 'Delete user', icon: 'delete', action: 'delete' },
+  ];
 
   @Output()
   private userClicked: EventEmitter<IUser> = new EventEmitter();
+
+  @ViewChild(MatSort) public sort: MatSort;
 
   public dataSource: CustomDataSource<IUser>;
 
@@ -52,7 +57,7 @@ export class UserListComponent implements AfterViewInit, OnChanges {
     this.dataSource.sort = this.sort;
   }
 
-  public onDelete(user: IUser): void {
+  private onDelete(user: IUser): void {
     this.notificationService.addPopup({
       title: 'Are you sure?',
       text: 'This cannot be reverted',
@@ -67,6 +72,13 @@ export class UserListComponent implements AfterViewInit, OnChanges {
         }
       },
     });
+  }
+
+  public onAction(action: string, user: IUser): void {
+    console.log(action, user); //TODO
+    if (action === 'delete') {
+      this.onDelete(user);
+    }
   }
 
   public onClick(user: IUser): void {

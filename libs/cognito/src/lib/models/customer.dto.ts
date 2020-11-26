@@ -1,4 +1,4 @@
-export type CustomerDto = CustomerAttributesDto
+export type CustomerDto = CustomerAttributesDto;
 
 export interface CustomerAttributesDto {
   name: string;

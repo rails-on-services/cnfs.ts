@@ -19,7 +19,7 @@ describe('GroupsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [GroupsComponent, GroupListMockComponent],
-      imports: [RouterTestingModule, MatIconModule, MatButtonModule,],
+      imports: [RouterTestingModule, MatIconModule, MatButtonModule],
       providers: [],
     }).compileComponents();
   });
