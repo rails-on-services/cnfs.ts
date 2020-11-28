@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/iam',
     '<rootDir>/libs/common',
     '<rootDir>/libs/cognito',
+    '<rootDir>/libs/auth',
   ],
 };

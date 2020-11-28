@@ -21,7 +21,8 @@
       "@cnfs/angular-table": ["libs/table/src/index.ts"],
       "@cnfs/iam": ["libs/iam/src/index.ts"],
       "@cnfs/common": ["libs/common/src/index.ts"],
-      "@cnfs/cognito": ["libs/cognito/src/index.ts"]
+      "@cnfs/cognito": ["libs/cognito/src/index.ts"],
+      "@cnfs/auth": ["libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
