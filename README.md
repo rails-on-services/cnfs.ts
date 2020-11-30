@@ -80,10 +80,10 @@ export class GroupsService
 - In your component define a CustomDataSource
 
 ```ts
-  public dataSource: CustomDataSource<IUser>;
+  public dataSource: CustomDataSource<IGroup>;
 
-  constructor(usersAdapter: UsersAdapter) {
-    this.dataSource = new CustomDataSource(usersAdapter);
+  constructor(usersAdapter: GroupsAdapter) {
+    this.dataSource = new CustomDataSource(groupsAdapter);
   }
 ```
 
