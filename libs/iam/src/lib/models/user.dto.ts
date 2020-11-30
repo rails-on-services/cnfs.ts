@@ -6,3 +6,5 @@ export interface UserDto extends UserAttributesDto {
 export interface UserAttributesDto {
   firstName: string;
 }
+
+export const TYPE: string = 'user';

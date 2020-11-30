@@ -6,3 +6,5 @@ export interface RoleDto extends RoleAttributesDto {
 export interface RoleAttributesDto {
   name: string;
 }
+
+export const TYPE: string = 'role';
