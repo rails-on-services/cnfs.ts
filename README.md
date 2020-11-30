@@ -9,6 +9,7 @@ This project was generated using [Nx](https://nx.dev).
 ```bash
 yarn build --prod
 ```
+
 Output assets are in `dist/apps/dashboard`
 
 ## Serve for development
@@ -22,9 +23,10 @@ By default app is served on http://localhost:4200.
 ## CI
 
 Each pull request to master runs the following checks using github actions:
-* Unit tests: `yarn affected:test --base=origin/master`
-* Lint: `yarn affected:lint --base=origin/master`
-* Build: `yarn affected:build --base=origin/master`
+
+- Unit tests: `yarn affected:test --base=origin/master`
+- Lint: `yarn affected:lint --base=origin/master`
+- Build: `yarn affected:build --base=origin/master`
 
 ## Deploy
 
