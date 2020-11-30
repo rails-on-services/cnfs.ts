@@ -26,10 +26,7 @@ import { routes } from './routes';
     MatSnackBarModule,
     MatDialogModule,
     CnfsCommonModule,
-    RouterModule.forRoot(
-      routes
-      // { relativeLinkResolution: 'legacy' }
-    ),
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent],
